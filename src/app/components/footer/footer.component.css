@@ -1,0 +1,65 @@
+.footer {
+    background-color: #3a2b22;
+    color: white;
+    padding: 30px 5%;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Logo */
+  .footer-logo h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  
+  /* Navegação */
+  .footer-nav {
+    display: flex;
+    gap: 30px;
+  }
+  
+  .footer-nav a {
+    color: #e7dacf;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  
+  .footer-nav a:hover {
+    color: #ffffff;
+  }
+  
+  /* Redes sociais */
+  .footer-social {
+    display: flex;
+    gap: 14px;
+  }
+  
+  .footer-social img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    opacity: 0.9;
+    transition: opacity .2s;
+    color: #e7dacf;
+  }
+  
+  .footer-social img:hover {
+    opacity: 1;
+  }
+  
+  /* Responsivo */
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+  }
+  
