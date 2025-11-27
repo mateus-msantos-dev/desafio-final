@@ -1,6 +1,6 @@
 .categorias-section {
     padding: 3rem 5%;
-    background-color: #fff3e0; /* tom creme suave */
+    background-color: #fff7ec; /* tom creme suave #fff3e0*/
   }
   
   .categorias-section h2 {
@@ -18,7 +18,7 @@
   
   /* Card */
   .categoria-card {
-    background-color: #fdf6ea;
+    background-color: #fff3e0;
     border-radius: 14px;
     padding: 1.2rem 0.8rem;
     text-align: center;
