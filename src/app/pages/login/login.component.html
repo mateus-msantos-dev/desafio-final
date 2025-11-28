@@ -1,0 +1,30 @@
+<div class="login-container">
+
+    <div class="login-card">
+  
+      <h2>Área Administrativa</h2>
+      <p class="subtitle">Acesse com suas credenciais</p>
+  
+      <form (ngSubmit)="login()" #form="ngForm">
+  
+        <div class="input-group">
+          <label>Email</label>
+          <input type="email" required [(ngModel)]="email" name="email">
+        </div>
+  
+        <div class="input-group">
+          <label>Senha</label>
+          <input type="password" required [(ngModel)]="senha" name="senha">
+        </div>
+  
+        <button type="submit" [disabled]="form.invalid">
+          Entrar
+        </button>
+  
+        <p class="error" ngIf="erro">{{ erro }}</p>
+  
+      </form>
+  
+    </div>
+  
+  </div>
