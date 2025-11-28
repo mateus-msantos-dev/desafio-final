@@ -13,16 +13,26 @@
     </nav>
 
     <!-- Ícones sociais (desktop) -->
-    <div class="social-icons">
-      <a href="#"><img src="img/instagram1.png" alt="instagram"></a>
-      <a href="#"><img src="img/facebook1.png" alt="facebook"></a>
-      <a href="#"><img src="img/whatsapp2.png" alt="whastapp"></a>
-    </div>
+    <div class="header-right">
 
-    <!-- Ícone menu mobile -->
-    <button class="mobile-menu-btn" (click)="toggleMenu()">
-      &#9776;
-    </button>
+      <div class="social-icons">
+        <a href="#"><img src="img/instagram1.png" alt="instagram"></a>
+        <a href="#"><img src="img/facebook1.png" alt="facebook"></a>
+        <a href="#"><img src="img/whatsapp2.png" alt="whatsapp"></a>
+      </div>
+
+      <!-- Carrinho -->
+      <button class="cart-btn">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="cart-count">0</span>
+      </button>
+
+      <!-- Ícone menu mobile -->
+      <button class="mobile-menu-btn" (click)="toggleMenu()">
+        &#9776;
+      </button>
+
+    </div>
 
   </div>
 

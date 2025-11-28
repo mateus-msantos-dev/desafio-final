@@ -14,6 +14,12 @@ body {
   z-index: 999;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 /* Container principal */
 .header-content {
   display: flex;
@@ -46,6 +52,29 @@ body {
 
 .nav-links a:hover {
   color: #fff;
+}
+
+.cart-btn {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.cart-count {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background-color: #ffb300;
+  color: #3a2b22;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
 }
 
 /* Ícones sociais desktop */
@@ -96,6 +125,13 @@ body {
   transform: translateX(0); /* aparece */
 }
 
+.mobile-menu nav {
+  display: flex;
+  flex-direction: column; 
+  flex-grow: 1; 
+  padding-top: 20px; 
+}
+
 .mobile-menu nav a {
   color: #fff;
   margin: 15px 0;
@@ -137,5 +173,15 @@ body {
 
   .mobile-menu-btn {
     display: block;
+  }
+}
+
+@media (max-width: 900px) {
+  .header-right {
+    gap: 16px;
+  }
+
+  .cart-btn {
+    font-size: 20px;
   }
 }
