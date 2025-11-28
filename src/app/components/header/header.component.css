@@ -1,0 +1,141 @@
+body {
+  overflow-x: hidden;
+}
+
+/* Fundo do header */
+.header {
+  width: 100%;
+  background-color: #3a2b22;
+  color: #fff;
+  box-sizing: border-box;
+  padding: 20px 5%;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+/* Container principal */
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Logo */
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Navegação Desktop */
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  color: #e8dcd0;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #fff;
+}
+
+/* Ícones sociais desktop */
+.social-icons {
+  display: flex;
+  gap: 14px;
+}
+
+.social-icons img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.85;
+  transition: 0.2s;
+}
+
+.social-icons img:hover {
+  opacity: 1;
+}
+
+/* Botão menu Mobile */
+.mobile-menu-btn {
+  display: none;
+  font-size: 1.8rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* --- MENU MOBILE --- */
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0; /* sempre 0 */
+  width: 260px;
+  height: 100vh;
+  background-color: #3a2b22;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%); /* esconde sem causar scroll */
+  transition: transform 0.3s ease;
+  z-index: 1001;
+}
+
+.mobile-menu.active {
+  transform: translateX(0); /* aparece */
+}
+
+.mobile-menu nav a {
+  color: #fff;
+  margin: 15px 0;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+.close-btn {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: #fff;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+  z-index: 1000;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* --- RESPONSIVO --- */
+@media (max-width: 900px) {
+  .nav-links,
+  .social-icons {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+}

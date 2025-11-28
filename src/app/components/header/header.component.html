@@ -1,1 +1,43 @@
-<p>header works!</p>
+<header class="header">
+  <div class="header-content">
+
+    <!-- Logo -->
+    <a class="logo" routerLink="/">Doce da Ju</a>
+
+    <!-- Navegação (desktop) -->
+    <nav class="nav-links">
+      <a routerLink="/">Home</a>
+      <a routerLink="/produtos">Produtos</a>
+      <a routerLink="/sobre">Sobre</a>
+      <a routerLink="/contato">Contato</a>
+    </nav>
+
+    <!-- Ícones sociais (desktop) -->
+    <div class="social-icons">
+      <a href="#"><img src="img/instagram1.png" alt="instagram"></a>
+      <a href="#"><img src="img/facebook1.png" alt="facebook"></a>
+      <a href="#"><img src="img/whatsapp2.png" alt="whastapp"></a>
+    </div>
+
+    <!-- Ícone menu mobile -->
+    <button class="mobile-menu-btn" (click)="toggleMenu()">
+      &#9776;
+    </button>
+
+  </div>
+
+  <!-- Menu Mobile -->
+  <div class="mobile-menu" [class.active]="menuAberto">
+    <button class="close-btn" (click)="toggleMenu()">×</button>
+
+    <nav>
+      <a routerLink="/" (click)="toggleMenu()">Home</a>
+      <a routerLink="/produtos" (click)="toggleMenu()">Produtos</a>
+      <a routerLink="/sobre" (click)="toggleMenu()">Sobre</a>
+      <a routerLink="/contato" (click)="toggleMenu()">Contato</a>
+    </nav>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" [class.active]="menuAberto" (click)="toggleMenu()"></div>
+</header>
