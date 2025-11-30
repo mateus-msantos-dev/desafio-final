@@ -1,0 +1,88 @@
+:host {
+  display: block;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Container central */
+.cadastro-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Card */
+.cadastro-card {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  padding: 35px 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.cadastro-card h2 {
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+/* Inputs */
+.input-group {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #3a2b22;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 1rem;
+}
+
+button:disabled {
+  background-color: #8a7466;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #2a1f18;
+}
+
+.error {
+  color: #d10000;
+  margin-bottom: 10px;
+}
+
+.login-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #3a2b22;
+  text-decoration: none;
+}

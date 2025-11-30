@@ -1,0 +1,43 @@
+<div class="cadastro-container">
+  <div class="cadastro-card">
+
+    <h2>Crie sua conta</h2>
+    <p class="subtitle">Preencha os dados abaixo</p>
+
+    <form #form="ngForm" (ngSubmit)="cadastrar()" class="cadastro-form">
+
+      <div class="input-group">
+        <label>Nome</label>
+        <input type="text" name="nome" required [(ngModel)]="nome">
+      </div>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" name="email" required [(ngModel)]="email">
+      </div>
+
+      <div class="input-group">
+        <label>Telefone (WhatsApp)</label>
+        <input type="tel" name="telefone" required placeholder="(71) 99999-9999" [ngModel]="telefone">
+      </div>
+
+
+      <div class="input-group">
+        <label>Senha</label>
+        <input type="password" name="senha" required minlength="6" [(ngModel)]="senha">
+      </div>
+
+      <div class="input-group">
+        <label>Confirmar senha</label>
+        <input type="password" name="senha2" required [(ngModel)]="senha2">
+      </div>
+
+      <p class="error" *ngIf="erro">{{ erro }}</p>
+
+      <button type="submit" [disabled]="form.invalid">Cadastrar</button>
+    </form>
+
+    <a class="login-link" routerLink="/login">Já tenho conta</a>
+
+  </div>
+</div>

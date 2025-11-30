@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   title = 'desafio-final';
 
-  private excludedRoutes: string[] = ['/login'];
+  private excludedRoutes: string[] = ['/login', '/cadastro'];
 
   constructor(private router: Router){}
 
