@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  getUsuarioLogado(): any {
+    throw new Error('Method not implemented.');
+  }
 
   // Simulando banco local
   usuarios = JSON.parse(localStorage.getItem('usuarios') || '[]');

@@ -1,0 +1,18 @@
+<div class="perfil-container">
+  <h2>Meu Perfil</h2>
+
+  <div class="perfil-card" ngIf="usuario">
+
+    <p><strong>Nome:</strong> {{ usuario.nome }}</p>
+    <p><strong>Email:</strong> {{ usuario.email }}</p>
+    <p><strong>Telefone:</strong> {{ usuario.telefone }}</p>
+
+    <div class="acoes">
+      <button routerLink="/editar-perfil">Editar Dados</button>
+      <button routerLink="/trocar-senha" class="btn-secundario">Trocar Senha</button>
+      <button class="btn-perigo">Excluir Conta</button>
+      <button (click)="logout()" class="btn-secundario">Sair</button>
+    </div>
+
+  </div>
+</div>
