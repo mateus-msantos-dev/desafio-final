@@ -122,3 +122,72 @@ h1 {
     background: #ff5e7a;
     transform: translateY(-1px);
 }
+
+/* Estilo para garantir que o conteúdo da célula esteja alinhado verticalmente */
+.cart-table th, .cart-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #f2e9e2;
+    vertical-align: middle; 
+}
+
+/* Centraliza os textos e botões */
+.item-price, .item-subtotal, .item-actions {
+    text-align: center;
+}
+
+/* Quantidade e Controles */
+.item-qty-controls {
+    text-align: center;
+    width: 120px;
+}
+
+.qty-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: hidden;
+    width: 100px; 
+    margin: 0 auto; /* Centraliza o controle dentro da célula */
+}
+
+.qty-btn {
+    background: #f2e9e2;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #3a2b22;
+    transition: background 0.1s;
+}
+
+.qty-btn:hover {
+    background: #ffccd5;
+}
+
+.qty-display {
+    padding: 6px 10px;
+    font-weight: 600;
+    width: 25px;
+    text-align: center;
+    /* Linhas divisórias internas */
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+/* Botão de Remover */
+.remove-btn {
+    background: none;
+    border: none;
+    color: #ff758f;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: color 0.1s;
+    padding: 5px;
+}
+
+.remove-btn:hover {
+    color: #ff5e7a;
+}

@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductService, Product } from '../../services/product.service';
+// ➡️ Importar o novo serviço
+import { CartService } from '../../services/cart.service'; 
 
-// Interface que representa um item completo no carrinho
+// ... (Interface CartItem existente) ...
 interface CartItem {
-  product: Product;
-  qty: number;
-  subtotal: number;
+    product: Product;
+    qty: number;
+    subtotal: number;
 }
+
 
 @Component({
   selector: 'app-cart',
@@ -21,28 +24,24 @@ export class CartComponent implements OnInit {
   totalValue: number = 0;
   carregando = true;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService // ⬅️ Injetar CartService
+  ) {}
 
   async ngOnInit(): Promise<void> {
-    // 1. Garante que os produtos estão carregados no serviço
     await this.productService.loadProducts();
-    
-    // 2. Carrega e processa os itens do localStorage
     this.loadCart();
-    
     this.carregando = false;
   }
 
   loadCart(): void {
     const raw = localStorage.getItem('cart');
-    // Estrutura do carrinho no localStorage: [{ productId: 1, qty: 2 }, ...]
     const rawCart: Array<{ productId: number; qty: number }> = raw ? JSON.parse(raw) : [];
 
     this.cartItems = rawCart
       .map(item => {
         const product = this.productService.findById(item.productId);
-        
-        // Ignora itens se o produto não for encontrado (segurança)
         if (!product || item.qty <= 0) return null; 
 
         return {
@@ -51,7 +50,7 @@ export class CartComponent implements OnInit {
           subtotal: product.price * item.qty
         } as CartItem;
       })
-      .filter((item): item is CartItem => item !== null); // Filtra itens nulos
+      .filter((item): item is CartItem => item !== null);
 
     this.calculateTotal();
   }
@@ -64,7 +63,26 @@ export class CartComponent implements OnInit {
     return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   }
 
-  // Opções para interatividade (futuro)
-  // removeOne(productId: number): void { ... }
-  // removeAll(productId: number): void { ... }
+  // ➡️ NOVOS MÉTODOS DE INTERAÇÃO
+  
+  increaseQty(productId: number): void {
+    this.cartService.increaseQuantity(productId);
+    this.loadCart(); // Recarrega os dados para atualizar a tabela e o total
+  }
+
+  decreaseQty(productId: number): void {
+    this.cartService.decreaseQuantity(productId);
+    this.loadCart(); // Recarrega os dados para atualizar a tabela e o total
+  }
+
+  remove(productId: number): void {
+    this.cartService.removeItem(productId);
+    this.loadCart(); // Recarrega os dados para atualizar a tabela e o total
+  }
+
+  checkout(): void {
+      alert("Pedido finalizado (simulação)! O carrinho será limpo.");
+      this.cartService.clearCart(); // Limpa o localStorage e zera o contador
+      this.loadCart(); // Atualiza a UI para mostrar que está vazio
+  }
 }

@@ -1,47 +1,42 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-// Estrutura simplificada do item no localStorage
 interface LocalCartItem {
   productId: number;
   qty: number;
 }
 
 @Injectable({
-  // Garante que o serviço seja um singleton (instância única)
   providedIn: 'root'
 })
 export class CartService {
-  // BehaviorSubject: armazena o estado atual (0) e emite para novos subscritores
   private cartItemCountSubject = new BehaviorSubject<number>(0);
-  
-  // Observable: O componente Header irá subscrever-se a este
   cartItemCount$: Observable<number> = this.cartItemCountSubject.asObservable();
 
   constructor() {
-    // Inicializa o contador com o valor atual do localStorage
     this.updateCartCount();
   }
 
-  // --- Lógica de Leitura ---
-
   private getCartItems(): LocalCartItem[] {
     const raw = localStorage.getItem('cart');
-    // Retorna a lista de objetos ou um array vazio
     return raw ? (JSON.parse(raw) as LocalCartItem[]) : [];
   }
 
-  // Calcula o total de unidades no carrinho e notifica todos os subscritores
+  // Novo método: Centraliza a escrita no localStorage e notifica o contador
+  private saveCart(items: LocalCartItem[]): void {
+    localStorage.setItem('cart', JSON.stringify(items));
+    this.updateCartCount();
+  }
+
   updateCartCount(): void {
     const items = this.getCartItems();
-    // Soma a quantidade (qty) de todos os itens
     const totalCount = items.reduce((sum, item) => sum + item.qty, 0);
     this.cartItemCountSubject.next(totalCount);
   }
 
-  // --- Lógica de Modificação (Refatoração Necessária) ---
+  // --- MÉTODOS DE INTERAÇÃO COM O CARRINHO ---
 
-  // Refatora a função que adiciona/atualiza itens no carrinho
+  // Método usado pelo ProdutosComponent (e por increaseQuantity)
   addToCart(productId: number, qty: number = 1): void {
     const currentItems = this.getCartItems();
     const existingItemIndex = currentItems.findIndex(item => item.productId === productId);
@@ -51,11 +46,41 @@ export class CartService {
     } else {
       currentItems.push({ productId, qty });
     }
-
-    // 1. Salva o novo estado no localStorage
-    localStorage.setItem('cart', JSON.stringify(currentItems));
     
-    // 2. ATUALIZA O CONTADOR DO HEADER
+    this.saveCart(currentItems);
+  }
+  
+  // Novo método: Aumentar a quantidade
+  increaseQuantity(productId: number): void {
+    this.addToCart(productId, 1);
+  }
+
+  // Novo método: Diminuir a quantidade
+  decreaseQuantity(productId: number): void {
+    const currentItems = this.getCartItems();
+    const itemIndex = currentItems.findIndex(item => item.productId === productId);
+
+    if (itemIndex > -1) {
+      currentItems[itemIndex].qty -= 1;
+
+      // Se a quantidade for <= 0, remove o item
+      if (currentItems[itemIndex].qty <= 0) {
+        currentItems.splice(itemIndex, 1);
+      }
+      this.saveCart(currentItems);
+    }
+  }
+
+  // Novo método: Remover item completamente
+  removeItem(productId: number): void {
+    let currentItems = this.getCartItems();
+    currentItems = currentItems.filter(item => item.productId !== productId);
+    this.saveCart(currentItems);
+  }
+
+  // Novo método: Limpar o carrinho (útil para checkout)
+  clearCart(): void {
+    localStorage.removeItem('cart');
     this.updateCartCount();
   }
 }

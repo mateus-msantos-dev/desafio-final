@@ -2,12 +2,6 @@
     <div class="container">
         <h1>🛒 Seu Carrinho</h1>
 
-        <div *ngIf="carregando" class="loading">Carregando carrinho...</div>
-        
-        <div *ngIf="!carregando && cartItems.length === 0" class="empty-cart">
-            Seu carrinho está vazio. Adicione alguns produtos!
-        </div>
-
         <div *ngIf="!carregando && cartItems.length > 0">
             <table class="cart-table">
                 <thead>
@@ -16,7 +10,7 @@
                         <th>Preço</th>
                         <th>Quantidade</th>
                         <th>Subtotal</th>
-                    </tr>
+                        <th>Ações</th> </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of cartItems">
@@ -28,8 +22,30 @@
                             <p class="item-short">{{ item.product.short }}</p>
                         </td>
                         <td class="item-price">{{ formatPrice(item.product.price) }}</td>
-                        <td class="item-qty">{{ item.qty }}</td>
+                        
+                        <td class="item-qty-controls">
+                            <div class="qty-control">
+                                <button 
+                                  class="qty-btn" 
+                                  (click)="decreaseQty(item.product.id)"
+                                  title="Diminuir Quantidade"
+                                >-</button>
+                                <span class="qty-display">{{ item.qty }}</span>
+                                <button 
+                                  class="qty-btn" 
+                                  (click)="increaseQty(item.product.id)"
+                                  title="Aumentar Quantidade"
+                                >+</button>
+                            </div>
+                        </td>
+                        
                         <td class="item-subtotal">{{ formatPrice(item.subtotal) }}</td>
+                        
+                        <td class="item-actions">
+                            <button class="remove-btn" (click)="remove(item.product.id)">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -40,7 +56,7 @@
                     <span class="total-value">{{ formatPrice(totalValue) }}</span>
                 </div>
                 
-                <button class="btn-checkout">Finalizar Pedido</button>
+                <button class="btn-checkout" (click)="checkout()">Finalizar Pedido</button>
             </div>
         </div>
     </div>
