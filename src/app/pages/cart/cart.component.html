@@ -1,0 +1,47 @@
+<section class="cart-page">
+    <div class="container">
+        <h1>🛒 Seu Carrinho</h1>
+
+        <div *ngIf="carregando" class="loading">Carregando carrinho...</div>
+        
+        <div *ngIf="!carregando && cartItems.length === 0" class="empty-cart">
+            Seu carrinho está vazio. Adicione alguns produtos!
+        </div>
+
+        <div *ngIf="!carregando && cartItems.length > 0">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th colspan="2">Produto</th>
+                        <th>Preço</th>
+                        <th>Quantidade</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of cartItems">
+                        <td class="item-thumb-cell">
+                            <img [src]="item.product.image" [alt]="item.product.name" class="item-thumb">
+                        </td>
+                        <td class="item-name-cell">
+                            {{ item.product.name }}
+                            <p class="item-short">{{ item.product.short }}</p>
+                        </td>
+                        <td class="item-price">{{ formatPrice(item.product.price) }}</td>
+                        <td class="item-qty">{{ item.qty }}</td>
+                        <td class="item-subtotal">{{ formatPrice(item.subtotal) }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="cart-summary">
+                <div class="summary-line">
+                    <strong>Total:</strong>
+                    <span class="total-value">{{ formatPrice(totalValue) }}</span>
+                </div>
+                
+                <button class="btn-checkout">Finalizar Pedido</button>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,124 @@
+.cart-page {
+    background: #fff7ec;
+    padding: 50px 6%;
+    min-height: 80vh; /* Garante que a página tenha uma altura mínima */
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #3a2b22;
+    margin-bottom: 24px;
+    font-size: 2.2rem;
+}
+
+.empty-cart {
+    padding: 40px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #6f5e52;
+    background: #fff;
+    border-radius: 10px;
+}
+
+/* Tabela */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.cart-table th, .cart-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #f2e9e2;
+}
+
+.cart-table th {
+    background: #ffccd5;
+    color: #3a2b22;
+    font-weight: 700;
+}
+
+.cart-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Células de Item */
+.item-thumb-cell {
+    width: 80px;
+    padding-right: 0;
+}
+
+.item-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    vertical-align: middle;
+}
+
+.item-name-cell {
+    font-weight: 600;
+    color: #3a2b22;
+}
+
+.item-short {
+    font-size: 0.85rem;
+    color: #6f5e52;
+    margin: 3px 0 0 0;
+}
+
+.item-price, .item-subtotal, .item-qty {
+    text-align: right;
+    width: 15%;
+}
+
+.item-subtotal {
+    font-weight: 700;
+    color: #ff758f;
+}
+
+/* Resumo do Carrinho */
+.cart-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.summary-line {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #3a2b22;
+}
+
+.total-value {
+    font-weight: 700;
+    color: #ff758f;
+    margin-left: 20px;
+    display: inline-block;
+}
+
+.btn-checkout {
+    background: #ff758f;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-checkout:hover {
+    background: #ff5e7a;
+    transform: translateY(-1px);
+}

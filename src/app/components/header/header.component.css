@@ -65,6 +65,10 @@ body {
   align-items: center;
 }
 
+.fa-cart-shopping{
+  color: white;
+}
+
 .cart-count {
   position: absolute;
   top: -6px;
