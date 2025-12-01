@@ -1,0 +1,39 @@
+<section class="produtos-page">
+  <div class="container">
+    <h1>Produtos</h1>
+
+    <div *ngIf="carregando" class="loading">Carregando...</div>
+
+    <ng-container *ngIf="!carregando">
+      <section class="category-section" *ngFor="let grupo of produtosPorCategoria">
+        
+        <h2 class="category-title">{{ grupo.name }}</h2> 
+        
+        <hr class="category-separator">
+
+        <div class="grid">
+          <article class="produto-card" *ngFor="let produto of grupo.products">
+            <div class="thumb">
+              <img [src]="produto.image" [alt]="produto.name" />
+            </div>
+    
+            <div class="card-body">
+              <h3 class="title">{{ produto.name }}</h3>
+              <p class="short">{{ produto.short }}</p>
+    
+              <div class="card-footer">
+                <div class="price">{{ formatPrice(produto.price) }}</div>
+                <button class="btn-add" (click)="addToCart(produto)">Adicionar ao carrinho</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </ng-container>
+
+    <div *ngIf="!carregando && produtosPorCategoria.length === 0" class="no-products">
+      Nenhum produto encontrado.
+    </div>
+    
+  </div>
+</section>

@@ -1,0 +1,130 @@
+[
+    {
+      "id": 1,
+      "name": "Brigadeiros",
+      "short": "Caixa com 12 unidades - chocolate belga",
+      "price": 55.0,
+      "image": "/img/brigadeiros5.jpg",
+      "category": "doces"
+    },
+    {
+      "id": 2,
+      "name": "Bolo de Chocolate",
+      "short": "Bolo caseiro 1kg - recheio de brigadeiro",
+      "price": 45.0,
+      "image": "/img/bolo-de-chocolate.jpg",
+      "category": "bolos"
+    },
+    {
+      "id": 3,
+      "name": "Cupcakes de Baunilha",
+      "short": "4 unidades - cobertura de buttercream",
+      "price": 20.0,
+      "image": "/img/cupcake.jpg",
+      "category": "doces"
+    },
+    {
+      "id": 4,
+      "name": "Torta de Limão",
+      "short": "Torta 20cm - massa crocante",
+      "price": 60.0,
+      "image": "/img/torta-de-limao.jpg",
+      "category": "tortas"
+    },
+    {
+      "id": 5,
+      "name": "Coxinha",
+      "short": "Coxinha de frango",
+      "price": 5,
+      "image": "/img/coxinha.webp",
+      "category": "salgados"
+    },
+    {
+      "id": 6,
+      "name": "Kibe",
+      "short": "Kibe",
+      "price": 5,
+      "image": "/img/kibe.avif",
+      "category": "salgados"
+    },
+    {
+      "id": 7,
+      "name": "Pastel",
+      "short": "Pastel de carne",
+      "price": 5,
+      "image": "/img/",
+      "category": "salgados"
+    },
+    {
+      "id": 8,
+      "name": "Empada",
+      "short": "Empada de frango",
+      "price": 5,
+      "image": "/img/",
+      "category": "salgados"
+    },
+    {
+      "id": 9,
+      "name": "Bolo de Chocolate com Baunilha",
+      "short": "Bolo de Chocolate com Baunilha",
+      "price": 5,
+      "image": "/img/",
+      "category": "bolos"
+    },
+    {
+      "id": 10,
+      "name": "Bolo de Maracujá",
+      "short": "Bolo de Maracuja",
+      "price": 5,
+      "image": "/img/",
+      "category": "bolos"
+    },
+    {
+      "id": 11,
+      "name": "Bolo de Laranja",
+      "short": "Bolo de laranja",
+      "price": 5,
+      "image": "/img/",
+      "category": "bolos"
+    },
+    {
+      "id": 12,
+      "name": "Beijinho",
+      "short": "Beijinho",
+      "price": 5,
+      "image": "/img/",
+      "category": "doces"
+    },
+    {
+      "id": 13,
+      "name": "Bem Casado",
+      "short": "Bem Casado",
+      "price": 5,
+      "image": "/img/",
+      "category": "doces"
+    },
+    {
+      "id": 14,
+      "name": "Torta de morango",
+      "short": "Torta de morango",
+      "price": 5,
+      "image": "/img/",
+      "category": "tortas"
+    },
+    {
+      "id": 15,
+      "name": "Torta de Maracujá",
+      "short": "Torta de Maracujá",
+      "price": 5,
+      "image": "/img/",
+      "category": "tortas"
+    },
+    {
+      "id": 16,
+      "name": "Torta de Chocolate",
+      "short": "Torta de Chocolate",
+      "price": 5,
+      "image": "/img/",
+      "category": "tortas"
+    }
+]

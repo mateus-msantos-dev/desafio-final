@@ -4,7 +4,3 @@ body {
     background-color: #f6f4f1;
     box-sizing: border-box;
 }
-
-*, *::before, *::after {
-    box-sizing: border-box;
-}
