@@ -2,15 +2,15 @@
     {
       "id": 1,
       "name": "Brigadeiros",
-      "short": "Caixa com 12 unidades - chocolate belga",
+      "short": "Brigadeiro - unidade",
       "price": 55.0,
-      "image": "/img/brigadeiros5.jpg",
+      "image": "/img/brigadeiro.jpeg",
       "category": "doces"
     },
     {
       "id": 2,
       "name": "Bolo de Chocolate",
-      "short": "Bolo caseiro 1kg - recheio de brigadeiro",
+      "short": "Bolo de Chocolate - recheio de brigadeiro",
       "price": 45.0,
       "image": "/img/bolo-de-chocolate.jpg",
       "category": "bolos"
@@ -20,7 +20,7 @@
       "name": "Cupcakes de Baunilha",
       "short": "4 unidades - cobertura de buttercream",
       "price": 20.0,
-      "image": "/img/cupcake.jpg",
+      "image": "/img/cupcake-de-baunilha.avif",
       "category": "doces"
     },
     {
@@ -34,97 +34,97 @@
     {
       "id": 5,
       "name": "Coxinha",
-      "short": "Coxinha de frango",
-      "price": 5,
+      "short": "Coxinha de frango - unidade",
+      "price": 3,
       "image": "/img/coxinha.webp",
       "category": "salgados"
     },
     {
       "id": 6,
       "name": "Kibe",
-      "short": "Kibe",
-      "price": 5,
+      "short": "Kibe - unidade",
+      "price": 3,
       "image": "/img/kibe.avif",
       "category": "salgados"
     },
     {
       "id": 7,
       "name": "Pastel",
-      "short": "Pastel de carne",
-      "price": 5,
-      "image": "/img/",
+      "short": "Pastel de carne - unidade",
+      "price": 4,
+      "image": "/img/pastel.webp",
       "category": "salgados"
     },
     {
       "id": 8,
       "name": "Empada",
-      "short": "Empada de frango",
-      "price": 5,
-      "image": "/img/",
+      "short": "Empada de frango - unidade",
+      "price": 2.50,
+      "image": "/img/empada.webp",
       "category": "salgados"
     },
     {
       "id": 9,
-      "name": "Bolo de Chocolate com Baunilha",
-      "short": "Bolo de Chocolate com Baunilha",
-      "price": 5,
-      "image": "/img/",
+      "name": "Bolo de Milho",
+      "short": "Bolo de Milho",
+      "price": 28,
+      "image": "/img/bolo-de-milho.webp",
       "category": "bolos"
     },
     {
       "id": 10,
-      "name": "Bolo de Maracujá",
-      "short": "Bolo de Maracuja",
-      "price": 5,
-      "image": "/img/",
+      "name": "Bolo de Cenoura com Chocolate",
+      "short": "Bolo de Cenoura com Chocolate",
+      "price": 30,
+      "image": "/img/bolo-de-cenoura.webp",
       "category": "bolos"
     },
     {
       "id": 11,
       "name": "Bolo de Laranja",
       "short": "Bolo de laranja",
-      "price": 5,
-      "image": "/img/",
+      "price": 25,
+      "image": "/img/bolo-de-laranja.webp",
       "category": "bolos"
     },
     {
       "id": 12,
       "name": "Beijinho",
-      "short": "Beijinho",
+      "short": "Beijinho - unidade",
       "price": 5,
-      "image": "/img/",
+      "image": "/img/beijinho.jpg",
       "category": "doces"
     },
     {
       "id": 13,
       "name": "Bem Casado",
-      "short": "Bem Casado",
+      "short": "Bem Casado - unidade",
       "price": 5,
-      "image": "/img/",
+      "image": "/img/bem-casado.avif",
       "category": "doces"
     },
     {
       "id": 14,
       "name": "Torta de morango",
       "short": "Torta de morango",
-      "price": 5,
-      "image": "/img/",
+      "price": 62,
+      "image": "/img/torta-de-morango.jpg",
       "category": "tortas"
     },
     {
       "id": 15,
       "name": "Torta de Maracujá",
       "short": "Torta de Maracujá",
-      "price": 5,
-      "image": "/img/",
+      "price": 58,
+      "image": "/img/torta-de-maracuja.jpg",
       "category": "tortas"
     },
     {
       "id": 16,
       "name": "Torta de Chocolate",
       "short": "Torta de Chocolate",
-      "price": 5,
-      "image": "/img/",
+      "price": 55,
+      "image": "/img/torta-de-chocolate.webp",
       "category": "tortas"
     }
 ]

@@ -30,6 +30,7 @@
     box-shadow: 0 6px 18px rgba(0,0,0,0.06);
     display: flex;
     flex-direction: column;
+    transition: transform 0.25s;
   }
   
   .thumb {
@@ -91,6 +92,10 @@
   }
   
   .btn-add:hover { transform: translateY(-2px); }
+
+  .produto-card:hover{
+    transform: translateY(-4px);
+  }
 
   /* Novo estilo para o título da categoria */
 .category-title {
