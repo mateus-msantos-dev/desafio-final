@@ -1,46 +1,68 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router'; 
-// ⬅️ Importe o serviço
-
-import { Subscription } from 'rxjs'; // Importe Subscription para gerenciar a memória
+import { RouterLink, Router } from '@angular/router'; // ⬅️ Adicionar Router
+import { Subscription } from 'rxjs';
 import { CartService } from '../../services/cart.service';
+import { AuthService } from '../../services/auth.service'; // ⬅️ IMPORTAR AuthService
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  // Certifique-se de incluir RouterLink e CommonModule
-  imports: [CommonModule, RouterLink], 
+  imports: [CommonModule, RouterLink],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   menuAberto = false;
-  // ⬅️ Variável para armazenar o valor do contador
-  cartItemCount: number = 0; 
+  cartItemCount: number = 0;
+  isUserLoggedIn: boolean = false; // ⬅️ Nova variável para estado de login
+  
   private cartSubscription!: Subscription;
+  private authSubscription!: Subscription; // ⬅️ Nova Subscription
 
-  // ⬅️ Injetar o CartService
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private authService: AuthService, // ⬅️ Injetar AuthService
+    private router: Router // ⬅️ Injetar Router para logout
+  ) {}
 
   ngOnInit(): void {
-    // ⬅️ Subscrever ao BehaviorSubject do serviço
+    // Subscrição do Contador do Carrinho (Existente)
     this.cartSubscription = this.cartService.cartItemCount$.subscribe(
       (count) => {
-        // Atualiza a variável local toda vez que o serviço notifica uma mudança
         this.cartItemCount = count;
+      }
+    );
+    
+    // ⬅️ NOVA Subscrição do Estado de Login
+    this.authSubscription = this.authService.isLoggedIn$.subscribe(
+      (isLoggedIn) => {
+        this.isUserLoggedIn = isLoggedIn;
       }
     );
   }
 
   ngOnDestroy(): void {
-    // ⬅️ Desinscrever-se para evitar vazamentos de memória (memory leaks)
     if (this.cartSubscription) {
       this.cartSubscription.unsubscribe();
+    }
+    // ⬅️ Desinscrever-se do AuthService
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
     }
   }
 
   toggleMenu() {
     this.menuAberto = !this.menuAberto;
+  }
+  
+  // ⬅️ NOVO Método de Logout
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']); // Redireciona para a home após o logout
+    // Se o menu mobile estiver aberto, feche-o
+    if (this.menuAberto) {
+      this.toggleMenu();
+    }
   }
 }

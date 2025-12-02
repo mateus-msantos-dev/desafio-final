@@ -1,7 +1,7 @@
 <div class="perfil-container">
   <h2>Meu Perfil</h2>
 
-  <div class="perfil-card" ngIf="usuario">
+  <div class="perfil-card" *ngIf="usuario">
 
     <p><strong>Nome:</strong> {{ usuario.nome }}</p>
     <p><strong>Email:</strong> {{ usuario.email }}</p>

@@ -5,6 +5,10 @@ import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { MeuPerfilComponent } from './pages/meu-perfil/meu-perfil.component';
 import { ProdutosComponent } from './pages/produtos/produtos.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { adminGuard } from './guards/admin.guard';
+import { AdminComponent } from './pages/admin/admin.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent) },
@@ -19,6 +23,18 @@ export const routes: Routes = [
 
   { path: 'produtos', component: ProdutosComponent },
 
-  { path: 'carrinho', component: CartComponent}
+  { path: 'carrinho', component: CartComponent},
+
+  { 
+      path: 'admin', 
+      component: AdminComponent,
+      canActivate: [adminGuard] // ⬅️ Usa o guarda de admin
+    },
+
+  { 
+      path: 'checkout', 
+      component: CheckoutComponent, 
+      canActivate: [authGuard] 
+    }
   
 ];

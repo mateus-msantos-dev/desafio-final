@@ -17,7 +17,7 @@ export class CartService {
     this.updateCartCount();
   }
 
-  private getCartItems(): LocalCartItem[] {
+  public getCartItems(): LocalCartItem[] {
     const raw = localStorage.getItem('cart');
     return raw ? (JSON.parse(raw) as LocalCartItem[]) : [];
   }

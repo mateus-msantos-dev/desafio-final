@@ -1,33 +1,42 @@
 <header class="header">
   <div class="header-content">
 
-    <!-- Logo -->
     <a class="logo" routerLink="/">Doce da Ju</a>
-
-    <!-- Navegação (desktop) -->
     <nav class="nav-links">
       <a routerLink="/">Home</a>
       <a routerLink="/produtos">Produtos</a>
       <a routerLink="/sobre">Sobre</a>
-      <a routerLink="/contato">Contato</a>
     </nav>
 
-    <!-- Ícones sociais (desktop) -->
     <div class="header-right">
 
-      <div class="social-icons">
-        <a href="#"><img src="img/instagram1.png" alt="instagram"></a>
-        <a href="#"><img src="img/facebook1.png" alt="facebook"></a>
-        <a href="#"><img src="img/whatsapp2.png" alt="whatsapp"></a>
-      </div>
+      <div class="auth-links">
+        
+        <ng-container *ngIf="isUserLoggedIn">
+          <a routerLink="/meu-perfil" class="auth-icon" title="Meu Perfil">
+            <i class="fa-solid fa-user"></i>
+          </a>
+          <a (click)="logout()" class="auth-icon" title="Sair">
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </a>
+        </ng-container>
 
-      <!-- Carrinho -->
+        <ng-container *ngIf="!isUserLoggedIn">
+          <a routerLink="/login" class="auth-icon" title="Fazer Login">
+            <i class="fa-solid fa-user"></i>
+          </a>
+          <a routerLink="/cadastro" class="auth-icon auth-register" title="Cadastrar">
+            Cadastrar
+          </a>
+        </ng-container>
+      </div>
+      
+
       <button class="cart-btn">
         <a href="/carrinho"><i class="fa-solid fa-cart-shopping"></i></a>
         <span class="cart-count">{{ cartItemCount }}</span>
       </button>
 
-      <!-- Ícone menu mobile -->
       <button class="mobile-menu-btn" (click)="toggleMenu()">
         &#9776;
       </button>
@@ -36,7 +45,6 @@
 
   </div>
 
-  <!-- Menu Mobile -->
   <div class="mobile-menu" [class.active]="menuAberto">
     <button class="close-btn" (click)="toggleMenu()">×</button>
 
@@ -45,9 +53,13 @@
       <a routerLink="/produtos" (click)="toggleMenu()">Produtos</a>
       <a routerLink="/sobre" (click)="toggleMenu()">Sobre</a>
       <a routerLink="/contato" (click)="toggleMenu()">Contato</a>
-    </nav>
+
+      <a *ngIf="isUserLoggedIn" routerLink="/meu-perfil" (click)="toggleMenu()">Meu Perfil</a>
+      <a *ngIf="isUserLoggedIn" (click)="logout()">Sair</a>
+      <a *ngIf="!isUserLoggedIn" routerLink="/login" (click)="toggleMenu()">Fazer Login</a>
+      <a *ngIf="!isUserLoggedIn" routerLink="/cadastro" (click)="toggleMenu()">Cadastrar</a>
+      </nav>
   </div>
 
-  <!-- Overlay -->
   <div class="overlay" [class.active]="menuAberto" (click)="toggleMenu()"></div>
 </header>

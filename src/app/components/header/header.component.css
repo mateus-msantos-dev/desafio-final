@@ -168,6 +168,34 @@ body {
   pointer-events: auto;
 }
 
+/* --- NOVOS ESTILOS PARA AUTENTICAÇÃO --- */
+
+.auth-links {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espaço entre Perfil, Logout, Login */
+}
+
+.auth-icon {
+  color: #fff;
+  font-size: 1.1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.auth-icon:hover {
+  opacity: 0.8;
+}
+
+.auth-register {
+  /* Estilo visual para o botão "Cadastrar" */
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  border: 1px solid #e8dcd0; 
+  border-radius: 4px;
+}
+
 /* --- RESPONSIVO --- */
 @media (max-width: 900px) {
   .nav-links,
@@ -187,5 +215,12 @@ body {
 
   .cart-btn {
     font-size: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Oculta os links de autenticação do desktop no mobile (serão mostrados no menu lateral) */
+  .auth-links {
+    display: none; 
   }
 }
