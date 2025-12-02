@@ -86,3 +86,55 @@ button:hover:not(:disabled) {
   color: #3a2b22;
   text-decoration: none;
 }
+
+/* --- Estilos LGPD --- */
+
+/* Estilo geral para os blocos da LGPD */
+.lgpd-group {
+  text-align: left;
+  margin: 15px 0;
+  padding: 0 5px; /* Pequeno padding para afastar da borda */
+}
+
+/* Bloco Informativo */
+.lgpd-info {
+  border: 1px solid #ffccd5; /* Cor da sua paleta */
+  background: #fff7ec;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: #6f5e52;
+}
+
+.lgpd-info p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.lgpd-info a {
+  color: #ff758f; /* Cor de destaque */
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Bloco do Checkbox */
+.lgpd-consentimento {
+  display: flex; 
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.lgpd-consentimento input[type="checkbox"] {
+  width: auto; 
+  margin-right: 10px;
+  margin-top: 5px; 
+  cursor: pointer;
+}
+
+.lgpd-consentimento label {
+  font-size: 0.9rem;
+  color: #3a2b22; 
+  line-height: 1.4;
+  cursor: pointer;
+  font-weight: 500;
+}

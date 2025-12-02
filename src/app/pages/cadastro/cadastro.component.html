@@ -32,6 +32,21 @@
         <input type="password" name="senha2" required [(ngModel)]="senha2">
       </div>
 
+      <div class="lgpd-info lgpd-group">
+        <p>Os dados serão mantidos em nossa base de dados, só enquanto for desejado por você. A qualquer momento, será possível editar ou remover tais dados. <a target="_blank" routerLink="/termos-e-condicoes">Termos e Condições</a></p>
+      </div>
+        
+        <div class="lgpd-consentimento lgpd-group">
+          <input 
+            type="checkbox" 
+            id="consentimentoLGPD" 
+            name="consentimentoLGPD" 
+            required 
+            [(ngModel)]="consentimentoLGPD"
+          >
+          <label for="consentimentoLGPD">Sim, li e concordo com nossos termos.</label>
+        </div>
+
       <p class="error" *ngIf="erro">{{ erro }}</p>
 
       <button type="submit" [disabled]="form.invalid">Cadastrar</button>
