@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ProductService, Product } from '../../services/product.service';
 // ➡️ Importar o novo serviço
 import { CartService } from '../../services/cart.service'; 
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 // ... (Interface CartItem existente) ...
 interface CartItem {
@@ -26,7 +28,9 @@ export class CartComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private cartService: CartService // ⬅️ Injetar CartService
+    private cartService: CartService, // ⬅️ Injetar CartService
+    private authService: AuthService,   // ⬅️ adicionar
+    private router: Router
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -81,8 +85,16 @@ export class CartComponent implements OnInit {
   }
 
   checkout(): void {
-      alert("Pedido finalizado (simulação)! O carrinho será limpo.");
-      this.cartService.clearCart(); // Limpa o localStorage e zera o contador
-      this.loadCart(); // Atualiza a UI para mostrar que está vazio
-  }
+    // Se não estiver logado → alerta e redireciona
+    if (!this.authService.isAuthenticated()) {
+        alert("Você precisa estar logado para finalizar a compra.");
+        this.router.navigate(['/login']);
+        return;
+    }
+
+    // Se estiver logado → processo normal
+    alert("Pedido finalizado (simulação)! O carrinho será limpo.");
+    this.cartService.clearCart();
+    this.loadCart();
+}
 }
