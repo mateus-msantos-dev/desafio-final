@@ -57,3 +57,34 @@ button:hover {
 .btn-perigo:hover {
   background: #9d3333;
 }
+
+.pedidos-container {
+  margin-top: 30px;
+}
+
+.pedidos-container h3 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+.pedido-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.pedido-card p {
+  margin: 5px 0;
+}
+
+.itens ul {
+  padding-left: 20px;
+}
+
+.sem-pedidos {
+  margin-top: 20px;
+  font-style: italic;
+  color: #777;
+}

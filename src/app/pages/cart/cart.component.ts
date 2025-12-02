@@ -5,6 +5,7 @@ import { ProductService, Product } from '../../services/product.service';
 import { CartService } from '../../services/cart.service'; 
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { OrderService } from '../../services/order.service';
 
 // ... (Interface CartItem existente) ...
 interface CartItem {
@@ -30,6 +31,7 @@ export class CartComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService, // ⬅️ Injetar CartService
     private authService: AuthService,   // ⬅️ adicionar
+    private orderService: OrderService,
     private router: Router
   ) {}
 
@@ -85,16 +87,37 @@ export class CartComponent implements OnInit {
   }
 
   checkout(): void {
-    // Se não estiver logado → alerta e redireciona
-    if (!this.authService.isAuthenticated()) {
-        alert("Você precisa estar logado para finalizar a compra.");
-        this.router.navigate(['/login']);
-        return;
-    }
+  // Se não estiver logado → alerta e redireciona
+  if (!this.authService.isAuthenticated()) {
+      alert("Você precisa estar logado para finalizar a compra.");
+      this.router.navigate(['/login']);
+      return;
+  }
 
-    // Se estiver logado → processo normal
-    alert("Pedido finalizado (simulação)! O carrinho será limpo.");
-    this.cartService.clearCart();
-    this.loadCart();
+  // Usuário logado
+  const usuario = this.authService.getUsuarioLogado();
+  if (!usuario) return;
+
+  // Montar o pedido com base no carrinho atual
+  const order = {
+    id: Date.now(),
+    userEmail: usuario.email,
+    date: new Date().toISOString(),
+    total: this.totalValue,
+    items: this.cartItems.map(item => ({
+      name: item.product.name,
+      quantity: item.qty,
+      price: item.product.price
+    }))
+  };
+
+  // Salvar pedido no localStorage
+  this.orderService.criarPedido(order);
+
+  alert("Pedido realizado com sucesso!");
+
+  // Limpar carrinho
+  this.cartService.clearCart();
+  this.loadCart();
 }
 }
