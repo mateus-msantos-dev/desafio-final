@@ -35,26 +35,23 @@
 .subtitle {
   font-size: 1.15rem;
   color: #555;
-  margin-bottom: 25px;
+  margin-bottom: 35px;
 }
 
 /* Botão */
-.btn-hero {
+.btn-hero1 {
   background-color: #ff8ba7; /* rosa */
   padding: 14px 26px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: 0.2s ease;
-}
-
-.btn-hero a{
   text-decoration: none;
   color: #3a2b22;
 }
 
-.btn-hero:hover {
+.btn-hero1:hover {
   background-color: #ff6f91;
 }
 
