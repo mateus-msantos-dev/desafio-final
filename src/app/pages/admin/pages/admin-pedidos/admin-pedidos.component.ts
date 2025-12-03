@@ -1,6 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PedidoService } from '../../../../services/pedidos.service';
+
+interface Item {
+  name: string;
+  qty: number;
+  price: number;
+}
+
+interface Pedido {
+  id: number;
+  userName: string;
+  userPhone?: string;
+  items: Item[];
+  total: number;
+}
 
 @Component({
   selector: 'app-admin-pedidos',
@@ -10,37 +23,40 @@ import { PedidoService } from '../../../../services/pedidos.service';
   styleUrls: ['./admin-pedidos.component.css']
 })
 export class AdminPedidosComponent implements OnInit {
+  pedidos: Pedido[] = [];
 
-  pedidos: any[] = [];
-  pedidosFiltrados: any[] = [];
-
-  filtroAtual: string = 'Todos';
-
-  constructor(private pedidoService: PedidoService) {}
-
-  ngOnInit() {
-    this.pedidos = this.pedidoService.getTodosPedidos();
-    this.pedidosFiltrados = [...this.pedidos];
+  ngOnInit(): void {
+    this.loadPedidosFromLocalStorage();
   }
 
-  aplicarFiltro(filtro: string) {
-    this.filtroAtual = filtro;
-
-    if (filtro === 'Todos') {
-      this.pedidosFiltrados = [...this.pedidos];
-    } else {
-      this.pedidosFiltrados = this.pedidos.filter(p => p.status === filtro);
+  loadPedidosFromLocalStorage(): void {
+    const raw = localStorage.getItem('pedidos');
+    if (!raw) {
+      this.pedidos = [];
+      return;
+    }
+    try {
+      const parsed = JSON.parse(raw);
+      // tentativa de normalizar — aceitar arrays simples
+      if (Array.isArray(parsed)) {
+        this.pedidos = parsed as Pedido[];
+      } else {
+        this.pedidos = [];
+        console.warn('localStorage "pedidos" não é um array');
+      }
+    } catch (e) {
+      console.error('Erro parsing localStorage.pedidos', e);
+      this.pedidos = [];
     }
   }
 
-  alterarStatus(pedido: any, novoStatus: string) {
-    pedido.status = novoStatus;
+  formatPrice(value: number): string {
+    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
 
-    // salvar no localStorage
-    localStorage.setItem('pedidos', JSON.stringify(this.pedidos));
-
-    // atualizar o filtro atual
-    this.aplicarFiltro(this.filtroAtual);
+  itemSubtotal(item: Item): number {
+    return (item.price || 0) * (item.qty || 0);
   }
 }
+
 

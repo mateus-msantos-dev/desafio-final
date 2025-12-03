@@ -92,6 +92,7 @@ p {
   font-size: 1rem;
   cursor: pointer;
   transition: 0.2s;
+  background-color: #803333;
 }
 
 .logout-btn:hover {

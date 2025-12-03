@@ -3,6 +3,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 // Interface para simular a estrutura do usuário
 interface User {
+  nome: string;
+  telefone: string;
   email: string;
   senha: string;
   // Adiciona a simulação de nível de acesso (role)

@@ -1,39 +1,30 @@
-<div class="pedidos-container">
+<div class="pedidos-wrap">
+  <h2>Pedidos</h2>
 
-  <h2>📄 Pedidos</h2>
-
-  <!-- Filtros -->
-  <div class="filtros">
-    <button 
-      *ngFor="let f of ['Todos','Pendente','Processando','Finalizado']"
-      (click)="aplicarFiltro(f)"
-      [class.active]="filtroAtual === f">
-      {{ f }}
-    </button>
+  <div *ngIf="pedidos.length === 0" class="empty">
+    Nenhum pedido encontrado.
   </div>
 
-  <!-- Lista de pedidos -->
-  <div class="pedido-card" *ngFor="let pedido of pedidosFiltrados">
-    
-    <div class="pedido-info">
-      <h3>Pedido #{{ pedido.id }}</h3>
-      <p><strong>Cliente:</strong> {{ pedido.userName }}</p>
-      <p><strong>Total:</strong> R$ {{ pedido.total }}</p>
-      <p><strong>Status:</strong> 
-        <span class="status" [class]="pedido.status.toLowerCase()">
-          {{ pedido.status }}
-        </span>
-      </p>
-      <p><strong>Data:</strong> {{ pedido.data | date:'short' }}</p>
+  <div *ngFor="let pedido of pedidos" class="pedido-card">
+    <h3>Pedido #{{ pedido.id }}</h3>
+
+    <p><strong>Nome:</strong> {{ pedido.userName }}</p>
+    <p><strong>Telefone:</strong> {{ pedido.userPhone }}</p>
+
+    <div class="itens">
+      <h4>Itens</h4>
+      <ul>
+        <li *ngFor="let it of pedido.items">
+          {{ it.qty }}× {{ it.name }} —
+          Unidade: {{ formatPrice(it.price) }}
+        </li>
+      </ul>
     </div>
 
-    <select #sel (change)="alterarStatus(pedido, sel.value)">
-      <option value="Pendente" [selected]="pedido.status === 'Pendente'">Pendente</option>
-      <option value="Processando" [selected]="pedido.status === 'Processando'">Processando</option>
-      <option value="Finalizado" [selected]="pedido.status === 'Finalizado'">Finalizado</option>
-    </select>
-
+    <div class="total">
+      <strong>Total:</strong> {{ formatPrice(pedido.total) }}
+    </div>
   </div>
-
 </div>
+
 
