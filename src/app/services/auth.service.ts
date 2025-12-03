@@ -79,4 +79,9 @@ export class AuthService {
   getUsuarioLogado(): User | null {
       return this.usuarioLogado;
   }
+
+  getTodosUsuarios(): User[] {
+    // Retorna a lista local de usuários (simulando uma busca em banco)
+    return this.usuarios;
+  }
 }

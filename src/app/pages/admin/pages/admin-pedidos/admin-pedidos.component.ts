@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OrderService, Order } from '../../../../services/order.service';
+import { PedidoService } from '../../../../services/pedidos.service';
 
 @Component({
   selector: 'app-admin-pedidos',
@@ -11,17 +11,36 @@ import { OrderService, Order } from '../../../../services/order.service';
 })
 export class AdminPedidosComponent implements OnInit {
 
-  pedidos: Order[] = [];
+  pedidos: any[] = [];
+  pedidosFiltrados: any[] = [];
 
-  constructor(private orderService: OrderService) {}
+  filtroAtual: string = 'Todos';
 
-  ngOnInit(): void {
-    this.pedidos = this.orderService.listarPorUsuario(''); 
-    // acima pega todos, pois "" nunca filtra
-    this.pedidos = JSON.parse(localStorage.getItem('pedidos') || '[]');
+  constructor(private pedidoService: PedidoService) {}
+
+  ngOnInit() {
+    this.pedidos = this.pedidoService.getTodosPedidos();
+    this.pedidosFiltrados = [...this.pedidos];
   }
 
-  formatPrice(v: number): string {
-    return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  aplicarFiltro(filtro: string) {
+    this.filtroAtual = filtro;
+
+    if (filtro === 'Todos') {
+      this.pedidosFiltrados = [...this.pedidos];
+    } else {
+      this.pedidosFiltrados = this.pedidos.filter(p => p.status === filtro);
+    }
+  }
+
+  alterarStatus(pedido: any, novoStatus: string) {
+    pedido.status = novoStatus;
+
+    // salvar no localStorage
+    localStorage.setItem('pedidos', JSON.stringify(this.pedidos));
+
+    // atualizar o filtro atual
+    this.aplicarFiltro(this.filtroAtual);
   }
 }
+

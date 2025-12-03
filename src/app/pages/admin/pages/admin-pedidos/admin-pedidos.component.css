@@ -1,30 +1,79 @@
+:root {
+  --primary-color: #3a2b22;
+  --secondary-color: #e8dcd0;
+  --accent-color: #ffb300;
+  --card-bg: #f5eee7;
+  --text-color: #2c1f19;
+}
+
 .pedidos-container {
-  margin-top: 30px;
+  max-width: 1000px;
+  margin: 80px auto;
+  padding: 0 20px;
 }
 
+h2 {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 2rem;
+  margin-bottom: 25px;
+}
+
+/* Filtros */
+.filtros {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.filtros button {
+  margin: 0 10px;
+  padding: 8px 16px;
+  border: none;
+  background: var(--secondary-color);
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+.filtros button.active,
+.filtros button:hover {
+  background: var(--accent-color);
+  color: white;
+}
+
+/* Card de pedido */
 .pedido-card {
-  background: #f5eee7;
+  background: var(--card-bg);
   padding: 20px;
-  border-radius: 12px;
   margin-bottom: 20px;
-  border: 1px solid #dcd0c0;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-ul {
-  padding-left: 20px;
+.pedido-info h3 {
+  margin-bottom: 10px;
+  color: var(--primary-color);
 }
 
-.total {
-  margin-top: 10px;
-  font-size: 1.2rem;
-  color: #3a2b22;
+.status {
+  padding: 4px 8px;
+  border-radius: 6px;
   font-weight: bold;
 }
 
-.empty {
-  text-align: center;
-  padding: 20px;
-  background: #fff8e1;
-  border: 1px solid #ffd54f;
-  border-radius: 10px;
+.status.pendente { background: #ffe0c2; color: #b76b00; }
+.status.processando { background: #c7e7ff; color: #005a96; }
+.status.finalizado { background: #d8ffd8; color: #2f7a2f; }
+
+.acoes select {
+  padding: 8px;
+  border-radius: 6px;
+}
+
+select{
+  width: 100px;
+  height: 30px;
 }
