@@ -1,98 +1,100 @@
-/* --- Cores Base (Baseado no tema "Doce da Ju") --- */
 :root {
-    --primary-color: #3a2b22; /* Marrom escuro */
-    --secondary-color: #e8dcd0; /* Bege claro */
-    --accent-color: #ffb300; /* Amarelo/Dourado (para destaque) */
-    --text-color: #2c1f19;
-    --card-bg: #f5eee7; /* Fundo do card */
-    --danger-color: #b84242;
+  --primary-color: #3a2b22;
+  --secondary-color: #e8dcd0;
+  --accent-color: #ffb300;
+  --text-color: #2c1f19;
+  --card-bg: #f5eee7;
+  --danger-color: #b84242;
 }
 
-/* --- Container Principal --- */
+/* Container */
 .admin-dashboard {
-    max-width: 1200px;
-    margin: 80px auto;
-    padding: 0 20px;
-    font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 20px;
+  font-family: Arial, sans-serif;
 }
 
-/* --- Título e Subtítulos --- */
+/* Título */
 h2 {
-    text-align: center;
-    color: var(--primary-color);
-    margin-bottom: 30px;
-    font-size: 2.2rem;
-    border-bottom: 2px solid var(--accent-color);
-    padding-bottom: 10px;
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  font-size: 2.3rem;
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 10px;
 }
 
 h2 .fa-crown {
-    margin-right: 10px;
-    color: var(--accent-color);
+  margin-right: 10px;
+  color: var(--accent-color);
 }
 
+/* Subtítulo */
 p {
-    text-align: center;
-    color: var(--text-color);
-    margin-bottom: 40px;
+  text-align: center;
+  color: var(--text-color);
+  margin-bottom: 40px;
 }
 
-/* --- Card de Estatísticas (stats-card) --- */
-.stats-card {
-    background-color: var(--card-bg);
-    border: 1px solid #dcd0c0;
-    border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    margin-bottom: 40px;
-    text-align: center;
-    transition: transform 0.3s ease;
+/* Cards container */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
 }
 
-.stats-card:hover {
-    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+/* Card individual */
+.admin-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid #d4c4b5;
 }
 
-.stats-card h3 {
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+.admin-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
-.stats-card p {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: var(--accent-color);
-    margin: 0;
+.admin-card i {
+  font-size: 2.5rem;
+  color: var(--accent-color);
+  margin-bottom: 15px;
 }
 
-/* --- Botão de Logout --- */
+.admin-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+.admin-card p {
+  color: var(--text-color);
+  font-size: 0.95rem;
+}
+
+/* Botão logout */
 .logout-btn {
-    display: block;
-    width: 200px;
-    margin: 20px auto;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    background-color: var(--danger-color);
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s, box-shadow 0.2s;
+  display: block;
+  width: 200px;
+  margin: 20px auto;
+  padding: 12px 20px;
+  background-color: var(--danger-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .logout-btn:hover {
-    background-color: #9d3333;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* --- Responsividade (Ajustes para telas menores) --- */
-@media (max-width: 768px) {
-    .admin-dashboard {
-        margin: 40px 10px;
-    }
-
-    h2 {
-        font-size: 1.8rem;
-    }
+  background-color: #9d3333;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }

@@ -1,0 +1,30 @@
+.pedidos-container {
+  margin-top: 30px;
+}
+
+.pedido-card {
+  background: #f5eee7;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #dcd0c0;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+.total {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #3a2b22;
+  font-weight: bold;
+}
+
+.empty {
+  text-align: center;
+  padding: 20px;
+  background: #fff8e1;
+  border: 1px solid #ffd54f;
+  border-radius: 10px;
+}

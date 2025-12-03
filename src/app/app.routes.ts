@@ -25,11 +25,12 @@ export const routes: Routes = [
 
   { path: 'carrinho', component: CartComponent},
 
-  { 
-      path: 'admin', 
-      component: AdminComponent,
-      canActivate: [adminGuard] // ⬅️ Usa o guarda de admin
-    },
+  {
+  path: 'admin',
+  loadChildren: () =>
+    import('./pages/admin/admin.routes')
+      .then(r => r.adminRoutes)
+  },
 
   { 
       path: 'checkout', 

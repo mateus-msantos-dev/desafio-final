@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../services/auth.service'; // Ajuste o caminho
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -10,19 +10,16 @@ import { Router } from '@angular/router';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent {
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
-  ngOnInit() {
-    // Aqui você carregaria dados de pedidos, etc.
+  goTo(path: string) {
+    this.router.navigate([`/admin/${path}`]);
   }
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/']); // Redireciona para a home após o logout
+    this.router.navigate(['/']);
   }
 }

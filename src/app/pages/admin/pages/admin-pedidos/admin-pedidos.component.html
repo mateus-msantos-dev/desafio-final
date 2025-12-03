@@ -1,0 +1,22 @@
+<div class="pedidos-container">
+  <h3>📦 Lista de Pedidos</h3>
+
+  <div *ngIf="pedidos.length === 0" class="empty">
+    Nenhum pedido encontrado.
+  </div>
+
+  <div class="pedido-card" *ngFor="let p of pedidos">
+    <p><strong>ID do pedido:</strong> {{ p.id }}</p>
+    <p><strong>Email:</strong> {{ p.userEmail }}</p>
+    <p><strong>Data:</strong> {{ p.date | date:'dd/MM/yyyy HH:mm' }}</p>
+
+    <h4>Itens:</h4>
+    <ul>
+      <li *ngFor="let item of p.items">
+        {{ item.name }} (x{{ item.quantity }}) — {{ formatPrice(item.price) }}
+      </li>
+    </ul>
+
+    <p class="total"><strong>Total:</strong> {{ formatPrice(p.total) }}</p>
+  </div>
+</div>
