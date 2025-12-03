@@ -1,0 +1,44 @@
+.lgpd-page {
+    padding: 40px 16px;
+    background: #fff7ec;
+    min-height: calc(100vh - 120px);
+    box-sizing: border-box;
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 28px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    border: 1px solid #efe6dd;
+    color: #3a2b22;
+  }
+  
+  h1 {
+    margin: 0 0 10px 0;
+    font-size: 1.8rem;
+    color: #3a2b22;
+  }
+  
+  .intro {
+    color: #6f5e52;
+    margin-bottom: 18px;
+  }
+  
+  section { margin-bottom: 18px; }
+  
+  section h2 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: #3a2b22;
+  }
+  
+  ul { margin: 6px 0 0 18px; color: #4b3d36; }
+  
+  .contact a { color: #3a2b22; text-decoration: underline; }
+  
+  .final-note { margin-top: 12px; color: #6f5e52; font-size: 0.95rem; }
+  
+  .back { margin-top: 12px; }

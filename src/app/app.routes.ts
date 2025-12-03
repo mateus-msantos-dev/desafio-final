@@ -9,6 +9,7 @@ import { adminGuard } from './guards/admin.guard';
 import { AdminComponent } from './pages/admin/admin.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { authGuard } from './guards/auth.guard';
+import { LgpdComponent } from './pages/lgpd/lgpd.component';
 
 export const routes: Routes = [
   { path: '', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent) },
@@ -24,6 +25,8 @@ export const routes: Routes = [
   { path: 'produtos', component: ProdutosComponent },
 
   { path: 'carrinho', component: CartComponent},
+
+  { path: 'termos-e-condicoes', component: LgpdComponent },
 
   {
   path: 'admin',
