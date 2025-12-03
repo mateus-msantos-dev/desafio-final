@@ -1,142 +1,189 @@
 /* Fundo igual ao home (ajuste se usar outro tom) */
 .produtos {
-  background-color: #fff7ec; /* OU a cor exata do seu home */
-  padding: 40px 5%;
-  border-radius: 0;
-}
-
-.produtos h2{
-  font-size: 1.9rem;
-  color: #3a2b22;
-}
-
-/* ----- Carrossel Desktop ----- */
-.carousel-wrapper {
-  position: relative;
+    background-color: #fff7ec;
+    padding: 40px 5%;
+  }
+  
+  .produtos h2{
+    font-size: 1.9rem;
+    color: #3a2b22;
+    margin-bottom: 25px; /* Adiciona espaço abaixo do título */
+  }
+  
+  /* ----- Carrossel Desktop (Modificado) ----- */
+  
+  .carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    /* Não centraliza o conteúdo, pois o track é movido */
+    gap: 15px; 
+  }
+  
+  /* ⬅️ ÁREA VISÍVEL (Visor) - Onde o scroll é 'cortado' */
+  .carousel-view {
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  /* ⬅️ TRACK - O container interno que será transladado */
+  .carousel-track {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-}
-
-.carousel {
-  display: flex;
-  gap: 18px;
-  overflow-x: auto;
+  /* Define o tamanho total do track para caber todos os itens */
+  width: auto; 
+  gap: 22px; /* Espaço entre os cards (igual ao gap do grid na página de produtos) */
+  
+  /* Desativa o scroll nativo */
+  overflow-x: visible; 
   scroll-behavior: smooth;
-  padding-bottom: 10px;
-}
-
-.carousel::-webkit-scrollbar {
-  height: 8px;
-}
-
-.carousel::-webkit-scrollbar-thumb {
-  background: #e3d5c5;
-  border-radius: 10px;
-}
-
-/* Botões de navegação */
-.nav-btn {
-  background: #fff;
-  border: none;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.2rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-
-.nav-btn:hover {
-  background: #f3f3f3;
-}
-
-/* ----- Cards ----- */
-.produto-card {
-  min-width: 180px;
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  text-align: center;
-  overflow: hidden;
-  transition: transform 0.25s;
-}
-
-.produto-card:hover {
-  transform: translateY(-4px);
-}
-
-.produto-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-}
-
-.produto-card h3 {
-  font-size: 1rem;
-  margin: 12px 0 5px;
-  color: #3a2b22;
-  font-weight: 600;
-}
-
-.price {
-  color: #ff758f;
-  font-weight: bold;
-  margin-bottom: 12px;
-}
-
-.btn-buy {
-  background-color: #ffccd5;
-  border: none;
-  padding: 10px 14px;
-  width: 90%;
-  margin: 0 auto 14px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  color: #3a2b22;
-  transition: 0.2s;
-}
-
-.btn-buy:hover {
-  background-color: #ffb3c0;
-}
-
-/* --------------------------------------------------
-     RESPONSIVO — vira GRID no lugar do carrossel
--------------------------------------------------- */
-
-/* --------------------------------------------------
-   RESPONSIVO — vira GRID igual ao design original
--------------------------------------------------- */
-
-@media (max-width: 900px) {
-
-  /* Remove botões do carrossel */
+  /* Transição suave para o deslocamento (transform) */
+  transition: transform 0.3s ease-in-out; 
+  }
+  
+  /* Botões de navegação */
   .nav-btn {
-    display: none;
+    background: #fff;
+    border: none;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    z-index: 10;
   }
-
-  /* Carrossel vira grid */
-  .carousel {
-    overflow-x: unset;
-    display: grid;
-
-    /* 2 colunas como no layout */
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-
-    gap: 20px;
+  
+  .nav-btn:hover {
+    background: #f3f3f3;
   }
-
+  
+  /* ----- Cards (Adotando o Estilo da Página de Produtos) ----- */
+  
   .produto-card {
-    min-width: unset;
+    /* ⬅️ FORÇA 4 CARDS INTEIROS COM BASE NO GAP DE 22px */
+    /* 100% / 4 = 25%. Subtraímos 3/4 do gap (3 * 22px / 4) */
+    flex-shrink: 0;
+    width: calc(25% - 16.5px); 
+    min-width: calc(25% - 16.5px);
+    
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s;
+    cursor: pointer; /* Indica que é clicável */
   }
-}
-
-/* 1 coluna apenas em telas MUITO pequenas */
-@media (max-width: 600px) {
-  .carousel {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+  
+  .produto-card:hover {
+    transform: translateY(-4px);
   }
-}
+  
+  .thumb {
+    width: 100%;
+    height: 170px; /* Altura do thumb da página de produtos */
+    overflow: hidden;
+    background: #f2e9e2;
+  }
+  
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .card-body {
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+  
+  .title { /* Antes era h3 */
+    color: #3a2b22;
+    font-size: 1.05rem;
+    margin: 0;
+  }
+  
+  .short { /* Novo campo vindo do produto.html */
+    color: #6f5e52;
+    font-size: 0.95rem;
+    margin: 0;
+    flex: 1;
+  }
+  
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 6px;
+  }
+  
+  .price {
+    color: #ff758f;
+    font-weight: 700;
+  }
+  
+  .btn-add { /* Antes era btn-buy */
+    background: #ffccd5;
+    color: #3a2b22;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.14s;
+  }
+  
+  .btn-add:hover { transform: translateY(-2px); }
+  
+  /* --------------------------------------------------
+       RESPONSIVO (Ajusta para 2 ou 1 card)
+  -------------------------------------------------- */
+  
+  @media (max-width: 1200px) {
+      /* 3 cards em tela grande/média */
+      .produto-card {
+          width: calc(33.333% - 14.66px); 
+          min-width: calc(33.333% - 14.66px);
+      }
+      .carousel-track {
+          gap: 22px; 
+      }
+  }
+  
+  @media (max-width: 900px) {
+      /* Desativa o carrossel e volta para 2 colunas como no seu design original */
+    .nav-btn { display: none; }
+  
+    .carousel-wrapper {
+          display: block;
+          margin: 0 auto;
+      }
+      .carousel-view { overflow: visible; }
+      
+      .carousel-track {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        /* Limpa a transição do carrossel no modo grid */
+        transition: none;
+        transform: none !important; /* Reseta o deslocamento */
+        }
+  
+      .produto-card, .produto-card:hover {
+        min-width: unset;
+        width: auto;
+        transform: none;
+      }
+  }
+  
+  /* 1 coluna apenas em telas MUITO pequenas */
+  @media (max-width: 600px) {
+    .carousel-track {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
