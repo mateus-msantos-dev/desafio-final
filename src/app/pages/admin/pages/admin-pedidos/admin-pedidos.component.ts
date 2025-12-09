@@ -1,19 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-interface Item {
-  name: string;
-  qty: number;
-  price: number;
-}
-
-interface Pedido {
-  id: number;
-  userName: string;
-  userPhone?: string;
-  items: Item[];
-  total: number;
-}
+import { OrderService, Order } from '../../../../services/order.service'; // Usando o serviço que funciona
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-admin-pedidos',
@@ -23,39 +11,39 @@ interface Pedido {
   styleUrls: ['./admin-pedidos.component.css']
 })
 export class AdminPedidosComponent implements OnInit {
-  pedidos: Pedido[] = [];
+  
+  // Criamos uma lista "enriquecida" que terá o pedido + dados do cliente
+  pedidosExpandidos: any[] = [];
+
+  constructor(
+    private orderService: OrderService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.loadPedidosFromLocalStorage();
+    this.carregarDados();
   }
 
-  loadPedidosFromLocalStorage(): void {
-    const raw = localStorage.getItem('pedidos');
-    if (!raw) {
-      this.pedidos = [];
-      return;
-    }
-    try {
-      const parsed = JSON.parse(raw);
-      // tentativa de normalizar — aceitar arrays simples
-      if (Array.isArray(parsed)) {
-        this.pedidos = parsed as Pedido[];
-      } else {
-        this.pedidos = [];
-        console.warn('localStorage "pedidos" não é um array');
-      }
-    } catch (e) {
-      console.error('Erro parsing localStorage.pedidos', e);
-      this.pedidos = [];
-    }
-  }
+  carregarDados(): void {
+    // 1. Pega todos os pedidos (usando o serviço certo)
+    const todosPedidos = this.orderService.listarTodos();
+    
+    // 2. Pega todos os usuários para cruzarmos os dados
+    const todosUsuarios = this.authService.getTodosUsuarios();
 
-  formatPrice(value: number): string {
-    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-  }
+    // 3. Cruzamento de dados (JOIN)
+    this.pedidosExpandidos = todosPedidos.map(pedido => {
+      // Procura quem é o dono desse pedido pelo email
+      const cliente = todosUsuarios.find(u => u.email === pedido.userEmail);
 
-  itemSubtotal(item: Item): number {
-    return (item.price || 0) * (item.qty || 0);
+      return {
+        ...pedido, // Copia dados do pedido (id, total, items, date)
+        // Adiciona dados do cliente (ou texto padrão se não achar)
+        clienteNome: cliente ? cliente.nome : 'Cliente Desconhecido',
+        clienteTelefone: cliente ? cliente.telefone : 'Não informado',
+        clienteEmail: pedido.userEmail
+      };
+    });
   }
 }
 

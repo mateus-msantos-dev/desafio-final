@@ -1,28 +1,35 @@
 <div class="pedidos-wrap">
-  <h2>Pedidos</h2>
+  <h2>Gerenciamento de Pedidos</h2>
 
-  <div *ngIf="pedidos.length === 0" class="empty">
-    Nenhum pedido encontrado.
+  <div *ngIf="pedidosExpandidos.length === 0" class="empty">
+    Nenhum pedido realizado até o momento.
   </div>
 
-  <div *ngFor="let pedido of pedidos" class="pedido-card">
-    <h3>Pedido #{{ pedido.id }}</h3>
+  <div *ngFor="let pedido of pedidosExpandidos" class="pedido-card">
+    
+    <h3>
+      Pedido #{{ pedido.id }} 
+      <span class="data">{{ pedido.date | date:'dd/MM/yy HH:mm' }}</span>
+    </h3>
 
-    <p><strong>Nome:</strong> {{ pedido.userName }}</p>
-    <p><strong>Telefone:</strong> {{ pedido.userPhone }}</p>
+    <div class="dados-cliente">
+      <p><strong>Cliente:</strong> {{ pedido.clienteNome }}</p>
+      <p><strong>Telefone:</strong> {{ pedido.clienteTelefone }}</p>
+      <p><strong>Email:</strong> {{ pedido.clienteEmail }}</p>
+    </div>
 
     <div class="itens">
-      <h4>Itens</h4>
+      <h4>Itens Comprados:</h4>
       <ul>
-        <li *ngFor="let it of pedido.items">
-          {{ it.qty }}× {{ it.name }} —
-          Unidade: {{ formatPrice(it.price) }}
+        <li *ngFor="let item of pedido.items">
+          <strong>{{ item.quantity }}x</strong> {{ item.name }} 
+          <span class="preco-item">({{ item.price | currency:'BRL' }})</span>
         </li>
       </ul>
     </div>
 
     <div class="total">
-      <strong>Total:</strong> {{ formatPrice(pedido.total) }}
+      <strong>Total do Pedido:</strong> {{ pedido.total | currency:'BRL' }}
     </div>
   </div>
 </div>

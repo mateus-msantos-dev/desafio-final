@@ -44,4 +44,11 @@ export class OrderService {
     const pedidos = this.loadOrders();
     return pedidos.filter(p => p.userEmail === email).reverse(); // .reverse() para mostrar os mais recentes primeiro
   }
+
+  listarTodos(): Order[] {
+    const pedidos = this.loadOrders();
+    // Retorna ordenado do mais recente para o mais antigo
+    return pedidos.reverse();
+  }
+
 }
