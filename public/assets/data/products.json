@@ -2,15 +2,15 @@
     {
       "id": 1,
       "name": "Brigadeiros",
-      "short": "Brigadeiro - unidade",
-      "price": 1.50,
+      "short": "Brigadeiro Granulado - Unidade",
+      "price": 1,
       "image": "/img/brigadeiro.jpeg",
       "category": "doces"
     },
     {
       "id": 2,
       "name": "Bolo de Chocolate",
-      "short": "Bolo de Chocolate - recheio de brigadeiro",
+      "short": "Bolo de Chocolate - 500g",
       "price": 25.0,
       "image": "/img/bolo-de-chocolate.jpg",
       "category": "bolos"
@@ -18,47 +18,47 @@
     {
       "id": 3,
       "name": "Cupcakes de Baunilha",
-      "short": "cobertura de buttercream - 1 unidade",
-      "price": 5.0,
+      "short": "Cobertura de Buttercream - Unidade",
+      "price": 2.50,
       "image": "/img/cupcake-de-baunilha.avif",
       "category": "doces"
     },
     {
       "id": 4,
       "name": "Torta de Limão",
-      "short": "Torta 20cm - massa crocante",
-      "price": 30.0,
+      "short": "Torta 500g - Massa crocante",
+      "price": 32.0,
       "image": "/img/torta-de-limao.jpg",
       "category": "tortas"
     },
     {
       "id": 5,
       "name": "Coxinha",
-      "short": "Coxinha de frango - unidade",
-      "price": 2,
+      "short": "Coxinha de Frango - Unidade",
+      "price": 1,
       "image": "/img/coxinha.webp",
       "category": "salgados"
     },
     {
       "id": 6,
       "name": "Kibe",
-      "short": "Kibe - unidade",
-      "price": 1.50,
+      "short": "Kibe - Unidade",
+      "price": 1,
       "image": "/img/kibe.avif",
       "category": "salgados"
     },
     {
       "id": 7,
       "name": "Pastel",
-      "short": "Pastel de carne - unidade",
-      "price": 2,
+      "short": "Pastel de Carne - Unidade",
+      "price": 1,
       "image": "/img/pastel.webp",
       "category": "salgados"
     },
     {
       "id": 8,
       "name": "Empada",
-      "short": "Empada de frango - unidade",
+      "short": "Empada de Frango - Unidade",
       "price": 1.50,
       "image": "/img/empada.webp",
       "category": "salgados"
@@ -66,7 +66,7 @@
     {
       "id": 9,
       "name": "Bolo de Milho",
-      "short": "Bolo de Milho",
+      "short": "Bolo de Milho - 500g",
       "price": 20,
       "image": "/img/bolo-de-milho.webp",
       "category": "bolos"
@@ -74,56 +74,56 @@
     {
       "id": 10,
       "name": "Bolo de Cenoura com Chocolate",
-      "short": "Bolo de Cenoura com Chocolate",
-      "price": 26,
+      "short": "Bolo de Cenoura com Chocolate - 500g",
+      "price": 28,
       "image": "/img/bolo-de-cenoura.webp",
       "category": "bolos"
     },
     {
       "id": 11,
       "name": "Bolo de Laranja",
-      "short": "Bolo de laranja",
-      "price": 25,
+      "short": "Bolo de laranja - 500g",
+      "price": 20,
       "image": "/img/bolo-de-laranja.webp",
       "category": "bolos"
     },
     {
       "id": 12,
       "name": "Beijinho",
-      "short": "Beijinho - unidade",
-      "price": 1.50,
+      "short": "Beijinho - Unidade",
+      "price": 1,
       "image": "/img/beijinho.jpg",
       "category": "doces"
     },
     {
       "id": 13,
       "name": "Bem Casado",
-      "short": "Bem Casado - unidade",
-      "price": 2,
+      "short": "Bem Casado - Unidade",
+      "price": 1.50,
       "image": "/img/bem-casado.avif",
       "category": "doces"
     },
     {
       "id": 14,
       "name": "Torta de morango",
-      "short": "Torta de morango",
-      "price": 45,
+      "short": "Torta 500g - Massa crocante",
+      "price": 40,
       "image": "/img/torta-de-morango.jpg",
       "category": "tortas"
     },
     {
       "id": 15,
       "name": "Torta de Maracujá",
-      "short": "Torta de Maracujá",
-      "price": 42,
+      "short": "Torta 500g - Massa crocante",
+      "price": 38,
       "image": "/img/torta-de-maracuja.jpg",
       "category": "tortas"
     },
     {
       "id": 16,
       "name": "Torta de Chocolate",
-      "short": "Torta de Chocolate",
-      "price": 44,
+      "short": "Torta 500g - Massa crocante",
+      "price": 35,
       "image": "/img/torta-de-chocolate.webp",
       "category": "tortas"
     }
