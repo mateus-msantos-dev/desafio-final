@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, Router } from '@angular/router'; // ⬅️ Adicionar Router
+import { RouterLink, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CartService } from '../../services/cart.service';
-import { AuthService } from '../../services/auth.service'; // ⬅️ IMPORTAR AuthService
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -15,26 +15,26 @@ import { AuthService } from '../../services/auth.service'; // ⬅️ IMPORTAR Au
 export class HeaderComponent implements OnInit, OnDestroy {
   menuAberto = false;
   cartItemCount: number = 0;
-  isUserLoggedIn: boolean = false; // ⬅️ Nova variável para estado de login
+  isUserLoggedIn: boolean = false;
   
   private cartSubscription!: Subscription;
-  private authSubscription!: Subscription; // ⬅️ Nova Subscription
+  private authSubscription!: Subscription;
 
   constructor(
     private cartService: CartService,
-    private authService: AuthService, // ⬅️ Injetar AuthService
-    private router: Router // ⬅️ Injetar Router para logout
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    // Subscrição do Contador do Carrinho (Existente)
+    // 1. Contador do Carrinho
     this.cartSubscription = this.cartService.cartItemCount$.subscribe(
       (count) => {
         this.cartItemCount = count;
       }
     );
     
-    // ⬅️ NOVA Subscrição do Estado de Login
+    // 2. Estado de Login
     this.authSubscription = this.authService.isLoggedIn$.subscribe(
       (isLoggedIn) => {
         this.isUserLoggedIn = isLoggedIn;
@@ -43,24 +43,36 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.cartSubscription) {
-      this.cartSubscription.unsubscribe();
-    }
-    // ⬅️ Desinscrever-se do AuthService
-    if (this.authSubscription) {
-      this.authSubscription.unsubscribe();
-    }
+    if (this.cartSubscription) this.cartSubscription.unsubscribe();
+    if (this.authSubscription) this.authSubscription.unsubscribe();
   }
 
   toggleMenu() {
     this.menuAberto = !this.menuAberto;
   }
+
+  // --- LÓGICA NOVA DE REDIRECIONAMENTO ---
+  navegarParaPerfil() {
+    const usuario = this.authService.getUsuarioLogado();
+
+    if (!usuario) {
+      // Se por algum motivo não tiver usuário, vai pro login
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    if (usuario.role === 'admin') {
+      // Se for ADMIN -> Vai para o Dashboard
+      this.router.navigate(['/admin']);
+    } else {
+      // Se for CLIENTE -> Vai para o Perfil (ou Home, conforme sua preferência)
+      this.router.navigate(['/meu-perfil']); 
+    }
+  }
   
-  // ⬅️ NOVO Método de Logout
   logout() {
     this.authService.logout();
-    this.router.navigate(['/']); // Redireciona para a home após o logout
-    // Se o menu mobile estiver aberto, feche-o
+    this.router.navigate(['/']); // Volta para home
     if (this.menuAberto) {
       this.toggleMenu();
     }

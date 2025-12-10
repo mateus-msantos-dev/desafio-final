@@ -1,34 +1,3 @@
-<div class="admin-dashboard">
 
-  <h2><i class="fa-solid fa-crown"></i> Painel Administrativo</h2>
-  <p>Bem-vindo, administrador! Escolha uma das opções abaixo:</p>
-
-  <div class="cards-container">
-
-    <!-- Card: Pedidos -->
-    <div class="admin-card" (click)="goTo('pedidos')">
-      <i class="fa-solid fa-receipt"></i>
-      <h3>Pedidos</h3>
-      <p>Ver e gerenciar todos os pedidos feitos pelos clientes.</p>
-    </div>
-
-    <!-- Card: Produtos -->
-    <div class="admin-card" (click)="goTo('produtos')">
-      <i class="fa-solid fa-boxes-stacked"></i>
-      <h3>Produtos</h3>
-      <p>Gerenciar a lista completa de produtos cadastrados.</p>
-    </div>
-
-    <!-- Card: Criar Produto -->
-    <div class="admin-card" (click)="goTo('criar-produto')">
-      <i class="fa-solid fa-plus"></i>
-      <h3>Novo Produto</h3>
-      <p>Adicionar novos produtos ao catálogo.</p>
-    </div>
-
-  </div>
-
-  <button class="logout-btn" (click)="logout()">Sair</button>
-</div>
 
 <router-outlet></router-outlet>

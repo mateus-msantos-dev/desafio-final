@@ -1,25 +1,13 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router, RouterOutlet } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'app-admin',
+  selector: 'app-admin-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [RouterOutlet], // OBRIGATÓRIO: Importar RouterOutlet para funcionar o HTML
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
-
-  constructor(private router: Router, private authService: AuthService) {}
-
-  goTo(path: string) {
-    this.router.navigate([`/admin/${path}`]);
-  }
-
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/']);
-  }
+  // Esse componente é simples, serve apenas para segurar as rotas filhas
 }

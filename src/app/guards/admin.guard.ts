@@ -12,8 +12,10 @@ export const adminGuard: CanActivateFn = (route, state) => {
   if (usuario && usuario.role === 'admin') {
     return true; // Acesso concedido
   } else {
-    // Acesso negado, redireciona para a home ou para a página de login
+    // Acesso negado
     alert('Acesso negado: Você não tem permissão de administrador.');
-    return router.createUrlTree(['/login']); 
+    
+    // É mais seguro redirecionar para '/' (Home) do que '/login' se ele já estiver logado como cliente
+    return router.createUrlTree(['/']); 
   }
 };
