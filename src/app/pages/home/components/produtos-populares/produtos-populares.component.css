@@ -1,189 +1,223 @@
-/* Fundo igual ao home (ajuste se usar outro tom) */
+/* Fundo igual ao home */
 .produtos {
-    background-color: #fff7ec;
-    padding: 40px 5%;
-  }
-  
-  .produtos h2{
-    font-size: 1.9rem;
-    color: #3a2b22;
-    margin-bottom: 25px; /* Adiciona espaço abaixo do título */
-  }
-  
-  /* ----- Carrossel Desktop (Modificado) ----- */
-  
-  .carousel-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    /* Não centraliza o conteúdo, pois o track é movido */
-    gap: 15px; 
-  }
-  
-  /* ⬅️ ÁREA VISÍVEL (Visor) - Onde o scroll é 'cortado' */
-  .carousel-view {
-    overflow: hidden;
-    width: 100%;
-  }
-  
-  /* ⬅️ TRACK - O container interno que será transladado */
-  .carousel-track {
+  background-color: #fff7ec;
+  padding: 50px 5%; /* Ajustado para ficar igual a pagina de produtos */
+  overflow: hidden; /* Evita scroll lateral acidental */
+}
+
+.produtos h2 {
+  font-size: 2rem; /* Igualado ao h1 de produtos */
+  color: #3a2b22;
+  margin-bottom: 30px;
+  text-align: center; /* Centralizado fica mais bonito na Home */
+}
+
+/* ----- Estrutura do Carrossel ----- */
+
+.carousel-wrapper {
+  position: relative;
   display: flex;
-  /* Define o tamanho total do track para caber todos os itens */
-  width: auto; 
-  gap: 22px; /* Espaço entre os cards (igual ao gap do grid na página de produtos) */
-  
-  /* Desativa o scroll nativo */
-  overflow-x: visible; 
+  align-items: center;
+  gap: 15px;
+  max-width: 1200px; /* Limite de largura igual container */
+  margin: 0 auto;
+}
+
+.carousel-view {
+  overflow: hidden;
+  width: 100%;
+  padding: 10px 0; /* Espaço para a sombra do card não cortar */
+}
+
+.carousel-track {
+  display: flex;
+  width: auto;
+  gap: 22px; /* Gap idêntico ao Grid de produtos */
+  overflow-x: visible;
   scroll-behavior: smooth;
-  /* Transição suave para o deslocamento (transform) */
-  transition: transform 0.3s ease-in-out; 
-  }
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Transição mais elegante */
+}
+
+/* Botões de navegação */
+.nav-btn {
+  background: #fff;
+  border: 1px solid #e8dcd0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #3a2b22;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 10;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-btn:hover {
+  background: #3a2b22;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.nav-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+  transform: none;
+}
+
+/* ----- ESTILO DOS CARDS (Copiado da Pagina de Produtos) ----- */
+
+.produto-card {
+  /* ⚠️ Lógica vital para o carrossel: 4 itens */
+  flex-shrink: 0;
+  width: calc(25% - 16.5px); 
+  min-width: calc(25% - 16.5px);
   
-  /* Botões de navegação */
-  .nav-btn {
-    background: #fff;
-    border: none;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.2rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    z-index: 10;
+  /* Estilo Visual Idêntico */
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.produto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+}
+
+.thumb {
+  width: 100%;
+  height: 180px; /* Levemente maior para destaque */
+  overflow: hidden;
+  background: #f2e9e2;
+  position: relative;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s;
+}
+
+/* Zoom suave na imagem ao passar o mouse */
+.produto-card:hover .thumb img {
+  transform: scale(1.05);
+}
+
+.card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.title {
+  color: #3a2b22;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.short {
+  color: #8d7a6e;
+  font-size: 0.9rem;
+  margin: 0;
+  flex: 1; /* Empurra o footer para baixo */
+  line-height: 1.4;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #f5f0eb; /* Linha sutil separando footer */
+}
+
+.price {
+  color: #ff758f;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.btn-add {
+  background: #ffccd5;
+  color: #3a2b22;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.btn-add:hover {
+  background: #ff9eb0;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 5px rgba(255, 117, 143, 0.3);
+}
+
+.btn-add:active {
+  transform: scale(0.95);
+}
+
+/* --------------------------------------------------
+      RESPONSIVIDADE (Mantida)
+-------------------------------------------------- */
+
+@media (max-width: 1200px) {
+  /* 3 cards */
+  .produto-card {
+    width: calc(33.333% - 14.66px); 
+    min-width: calc(33.333% - 14.66px);
   }
-  
-  .nav-btn:hover {
-    background: #f3f3f3;
+}
+
+@media (max-width: 900px) {
+  /* Vira Grid de 2 colunas */
+  .nav-btn { display: none; }
+
+  .carousel-wrapper {
+    display: block;
+    margin: 0 auto;
   }
+  .carousel-view { overflow: visible; padding: 0; }
   
-  /* ----- Cards (Adotando o Estilo da Página de Produtos) ----- */
+  .carousel-track {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    transition: none;
+    transform: none !important;
+  }
+
+  .produto-card {
+    min-width: unset;
+    width: auto;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  /* 1 coluna */
+  .carousel-track {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
   
   .produto-card {
-    /* ⬅️ FORÇA 4 CARDS INTEIROS COM BASE NO GAP DE 22px */
-    /* 100% / 4 = 25%. Subtraímos 3/4 do gap (3 * 22px / 4) */
-    flex-shrink: 0;
-    width: calc(25% - 16.5px); 
-    min-width: calc(25% - 16.5px);
-    
-    background: #fff;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.25s;
-    cursor: pointer; /* Indica que é clicável */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   }
-  
-  .produto-card:hover {
-    transform: translateY(-4px);
-  }
-  
-  .thumb {
-    width: 100%;
-    height: 170px; /* Altura do thumb da página de produtos */
-    overflow: hidden;
-    background: #f2e9e2;
-  }
-  
-  .thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  
-  .card-body {
-    padding: 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex: 1;
-  }
-  
-  .title { /* Antes era h3 */
-    color: #3a2b22;
-    font-size: 1.05rem;
-    margin: 0;
-  }
-  
-  .short { /* Novo campo vindo do produto.html */
-    color: #6f5e52;
-    font-size: 0.95rem;
-    margin: 0;
-    flex: 1;
-  }
-  
-  .card-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-top: 6px;
-  }
-  
-  .price {
-    color: #ff758f;
-    font-weight: 700;
-  }
-  
-  .btn-add { /* Antes era btn-buy */
-    background: #ffccd5;
-    color: #3a2b22;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.14s;
-  }
-  
-  .btn-add:hover { transform: translateY(-2px); }
-  
-  /* --------------------------------------------------
-       RESPONSIVO (Ajusta para 2 ou 1 card)
-  -------------------------------------------------- */
-  
-  @media (max-width: 1200px) {
-      /* 3 cards em tela grande/média */
-      .produto-card {
-          width: calc(33.333% - 14.66px); 
-          min-width: calc(33.333% - 14.66px);
-      }
-      .carousel-track {
-          gap: 22px; 
-      }
-  }
-  
-  @media (max-width: 900px) {
-      /* Desativa o carrossel e volta para 2 colunas como no seu design original */
-    .nav-btn { display: none; }
-  
-    .carousel-wrapper {
-          display: block;
-          margin: 0 auto;
-      }
-      .carousel-view { overflow: visible; }
-      
-      .carousel-track {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        /* Limpa a transição do carrossel no modo grid */
-        transition: none;
-        transform: none !important; /* Reseta o deslocamento */
-        }
-  
-      .produto-card, .produto-card:hover {
-        min-width: unset;
-        width: auto;
-        transform: none;
-      }
-  }
-  
-  /* 1 coluna apenas em telas MUITO pequenas */
-  @media (max-width: 600px) {
-    .carousel-track {
-      grid-template-columns: repeat(1, 1fr);
-    }
-  }
+}
