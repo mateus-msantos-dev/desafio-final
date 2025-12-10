@@ -1,41 +1,49 @@
-<aside class="sidebar">
+<aside class="sidebar" [class.collapsed]="isCollapsed">
+  
   <div class="menu-header">
-    <h3>Admin Painel</h3>
+    <h3 *ngIf="!isCollapsed">Admin</h3>
+    
+    <button class="toggle-btn" (click)="toggleSidebar()">
+      <i class="fa-solid" [class.fa-chevron-left]="!isCollapsed" [class.fa-bars]="isCollapsed"></i>
+    </button>
   </div>
   
   <nav class="menu-nav">
     <ul>
       <li>
-        <a routerLink="/admin" 
-           routerLinkActive="active" 
-           [routerLinkActiveOptions]="{exact: true}">
-           <i class="fa-solid fa-chart-line"></i> Visão Geral
+        <a routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" title="Visão Geral">
+           <i class="fa-solid fa-chart-line"></i> 
+           <span *ngIf="!isCollapsed">Visão Geral</span>
         </a>
       </li>
 
       <li>
-        <a routerLink="/admin/pedidos" routerLinkActive="active">
-          <i class="fa-solid fa-receipt"></i> Pedidos
+        <a routerLink="/admin/pedidos" routerLinkActive="active" title="Pedidos">
+          <i class="fa-solid fa-receipt"></i> 
+          <span *ngIf="!isCollapsed">Pedidos</span>
         </a>
       </li>
 
       <li>
-        <a routerLink="/admin/produtos" routerLinkActive="active">
-          <i class="fa-solid fa-boxes-stacked"></i> Produtos
+        <a routerLink="/admin/produtos" routerLinkActive="active" title="Produtos">
+          <i class="fa-solid fa-boxes-stacked"></i> 
+          <span *ngIf="!isCollapsed">Produtos</span>
         </a>
       </li>
 
       <li>
-        <a routerLink="/admin/criar-produto" routerLinkActive="active">
-          <i class="fa-solid fa-plus"></i> Novo Produto
+        <a routerLink="/admin/criar-produto" routerLinkActive="active" title="Novo Produto">
+          <i class="fa-solid fa-plus"></i> 
+          <span *ngIf="!isCollapsed">Novo Produto</span>
         </a>
       </li>
     </ul>
   </nav>
 
   <div class="menu-footer">
-    <button (click)="logout()" class="btn-logout">
-      <i class="fa-solid fa-right-from-bracket"></i> Sair
+    <button (click)="logout()" class="btn-logout" title="Sair">
+      <i class="fa-solid fa-right-from-bracket"></i> 
+      <span *ngIf="!isCollapsed">Sair</span>
     </button>
   </div>
 </aside>

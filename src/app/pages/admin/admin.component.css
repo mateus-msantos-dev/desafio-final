@@ -1,22 +1,32 @@
+/* Layout Principal Travado na Tela */
 .admin-wrapper {
-  display: flex; /* Isso coloca Sidebar e Conteúdo lado a lado */
-  min-height: calc(100vh - 80px); /* Altura total da tela menos o Header */
+  display: flex;
+  /* MUDANÇA: height fixo calcula exatamente o espaço que sobra abaixo do header */
+  height: calc(100vh - 80px); 
   background-color: #f8f5f2;
+  overflow: hidden; /* IMPORTANTE: Impede rolagem na janela inteira */
 }
 
+/* Sidebar se ajusta sozinha (veremos o CSS dela abaixo) */
 .sidebar-area {
-  flex: 0 0 260px; /* Largura fixa da sidebar */
+  height: 100%;
+  overflow-y: auto; /* Se o menu for muito longo, ele rola */
 }
 
+/* Conteúdo Principal */
 .content-area {
-  flex: 1; /* O conteúdo ocupa todo o espaço que sobrar */
+  flex: 1; /* Ocupa todo o espaço restante */
+  /* MUDANÇA: O scroll acontece AQUI DENTRO, não na página */
+  overflow-y: auto; 
   padding: 30px;
-  overflow-x: hidden;
+  position: relative;
 }
 
 .content-container {
   max-width: 1200px;
   margin: 0 auto;
+  /* Se o conteúdo for pequeno (Dashboard), não gera scroll. 
+     Se for grande (Listar Produtos), gera scroll só nessa área. */
 }
 
 /* Responsivo: No celular a sidebar vai para cima ou some (ajuste básico) */

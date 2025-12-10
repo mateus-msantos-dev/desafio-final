@@ -4,47 +4,69 @@
 }
 
 .sidebar {
-  width: 260px;
+  width: 260px; /* Largura Aberta */
   height: 100%;
-  background-color: #3a2b22; /* Marrom escuro da marca */
+  background-color: #3a2b22;
   color: #fff;
   display: flex;
   flex-direction: column;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  transition: width 0.3s ease; /* Animação suave */
+  overflow-x: hidden; /* Esconde o que sobrar */
 }
 
+/* ESTILO QUANDO COLAPSADO */
+.sidebar.collapsed {
+  width: 70px; /* Largura Fechada */
+}
+
+/* Header */
 .menu-header {
-  padding: 25px 20px;
+  padding: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px; /* Altura fixa para alinhar */
+  box-sizing: border-box;
 }
 
 .menu-header h3 {
   margin: 0;
-  color: #ffb300; /* Dourado/Amarelo */
+  color: #ffb300;
   font-size: 1.4rem;
+  white-space: nowrap; /* Não quebra linha */
 }
 
-.menu-nav {
-  flex: 1; /* Ocupa o espaço disponível */
-  padding: 20px 0;
+/* Botão de Toggle */
+.toggle-btn {
+  background: none;
+  border: none;
+  color: #e8dcd0;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 5px;
+}
+/* Centraliza o botão se estiver fechado */
+.sidebar.collapsed .menu-header {
+  justify-content: center;
 }
 
-.menu-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+/* Links do Menu */
+.menu-nav { flex: 1; padding: 20px 0; }
+.menu-nav ul { list-style: none; padding: 0; margin: 0; }
 
 .menu-nav li a {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 15px; /* Espaço entre ícone e texto */
   padding: 15px 25px;
   color: #e8dcd0;
   text-decoration: none;
   font-size: 1rem;
-  transition: all 0.2s ease;
-  border-left: 4px solid transparent;
+  transition: 0.2s;
+  white-space: nowrap; /* Impede texto de quebrar enquanto fecha */
+  height: 50px;
+  box-sizing: border-box;
 }
 
 .menu-nav li a:hover {
@@ -52,14 +74,33 @@
   color: #fff;
 }
 
-/* Estilo do link ativo */
 .menu-nav li a.active {
   background-color: rgba(255, 179, 0, 0.1);
   color: #ffb300;
-  border-left-color: #ffb300;
-  font-weight: 600;
+  border-left: 4px solid #ffb300;
 }
 
+/* Centraliza ícones quando fechado */
+.sidebar.collapsed .menu-nav li a {
+  justify-content: center;
+  padding: 15px;
+  border-left: none; /* Remove borda lateral no modo ícone */
+}
+.sidebar.collapsed .menu-nav li a.active {
+  background-color: #ffb300; /* Fundo sólido no ícone ativo */
+  color: #3a2b22;
+  border-radius: 8px; /* Arredonda */
+  margin: 0 10px; /* Pequena margem */
+}
+
+/* Ícones */
+.menu-nav i {
+  font-size: 1.2rem;
+  width: 20px; /* Largura fixa para alinhar */
+  text-align: center;
+}
+
+/* Footer */
 .menu-footer {
   padding: 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -77,11 +118,17 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: 1rem;
   transition: 0.2s;
+  white-space: nowrap;
 }
 
 .btn-logout:hover {
   background-color: #e74c3c;
   color: white;
+}
+
+/* Ajuste do botão logout quando fechado */
+.sidebar.collapsed .btn-logout {
+  border: none; /* Remove borda */
+  font-size: 1.2rem;
 }

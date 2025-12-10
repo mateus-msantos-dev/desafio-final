@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
-import { AuthService } from '../../../../services/auth.service'; // Ajuste os '../' até chegar em services
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-admin-sidebar',
@@ -13,6 +13,13 @@ import { AuthService } from '../../../../services/auth.service'; // Ajuste os '.
 export class AdminSidebarComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
+
+  // Variável de controle
+  isCollapsed = false;
+
+  toggleSidebar() {
+    this.isCollapsed = !this.isCollapsed;
+  }
 
   logout() {
     this.authService.logout();
