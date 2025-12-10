@@ -1,28 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { Product, ProductService } from '../../../../services/product.service'; // Ajuste o caminho
+import { Component, inject, OnInit } from '@angular/core';
+import { Product, ProductService } from '../../../../services/product.service'; 
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router'; // ⬅️ Importante: Importar o Router
 
 @Component({
   selector: 'app-listar-produtos',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './listar-produtos.component.html',
-  styleUrls: ['./listar-produtos.component.css'] // ou scss
+  styleUrls: ['./listar-produtos.component.css'] 
 })
 export class ListarProdutosComponent implements OnInit {
   
-  listaProdutos: Product[] = [];
-  isLoading: boolean = true; // Para mostrar um "Carregando..." no HTML
+  // Injeção de dependências moderna
+  private productService = inject(ProductService);
+  private router = inject(Router); // ⬅️ Injetando o Router
 
-  constructor(private productService: ProductService) {}
+  listaProdutos: Product[] = [];
+  isLoading: boolean = true; 
 
   async ngOnInit() {
-    // 1. Aguarda o carregamento dos dados do JSON
     await this.productService.loadProducts();
-
-    // 2. Agora que temos certeza que carregou, buscamos a lista
     this.atualizarLista();
-    
-    // 3. Desativa o loading
     this.isLoading = false;
   }
 
@@ -30,18 +29,24 @@ export class ListarProdutosComponent implements OnInit {
     this.listaProdutos = this.productService.listar();
   }
 
-  // Exemplo de como deletar e atualizar a tela imediatamente
+  // ⬅️ Nova função para navegar para a criação
+  navegarParaNovo() {
+    this.router.navigate(['/admin/criar-produto']);
+  }
+
+  // ⬅️ Nova função que faz o botão Editar funcionar
+  editarProduto(id: number) {
+    this.router.navigate(['/admin/produtos/editar', id]);
+  }
+
   onDeletar(id: number) {
     if(confirm('Tem certeza que deseja excluir este produto?')) {
       const sucesso = this.productService.deletar(id);
       if (sucesso) {
         this.atualizarLista();
+      } else {
+        alert('Erro ao excluir.');
       }
     }
-  }
-  
-  // Método auxiliar para o botão (click) no HTML do exemplo
-  alert(msg: string) {
-    window.alert(msg);
   }
 }

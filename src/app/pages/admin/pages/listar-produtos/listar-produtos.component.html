@@ -1,5 +1,10 @@
 <div class="container">
-  <h2>Nossos Produtos</h2>
+  <div class="header-action">
+    <h2>Nossos Produtos</h2>
+    <button class="btn-novo" (click)="navegarParaNovo()">
+      <i class="fa-solid fa-plus"></i> Novo Produto
+    </button>
+  </div>
 
   <div *ngIf="isLoading" class="loading">
     <p>Carregando produtos...</p>
@@ -28,7 +33,7 @@
       </div>
 
       <div class="card-actions">
-        <button class="btn-edit" (click)="alert('Editar ID: ' + produto.id)">
+        <button class="btn-edit" (click)="editarProduto(produto.id)">
           Editar
         </button>
         

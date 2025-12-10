@@ -1,3 +1,26 @@
+.header-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.btn-novo {
+  background-color: #27ae60;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  max-width: 200px; /* Impede que fique gigante no flex */
+}
+
+.btn-novo:hover {
+  background-color: #219150;
+}
+
 /* Container Principal */
 .container {
   padding: 20px;
