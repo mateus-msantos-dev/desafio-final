@@ -1,1 +1,42 @@
-<p>listar-produtos works!</p>
+<div class="container">
+  <h2>Nossos Produtos</h2>
+
+  <div *ngIf="isLoading" class="loading">
+    <p>Carregando produtos...</p>
+  </div>
+
+  <div *ngIf="!isLoading && listaProdutos.length === 0" class="empty">
+    <p>Nenhum produto encontrado.</p>
+  </div>
+
+  <div *ngIf="!isLoading && listaProdutos.length > 0" class="product-grid">
+    
+    <div *ngFor="let produto of listaProdutos" class="card">
+      
+      <div class="card-image">
+        <img [src]="produto.image || 'assets/placeholder.png'" [alt]="produto.name">
+        <span class="category-tag" *ngIf="produto.category">{{ produto.category }}</span>
+      </div>
+
+      <div class="card-content">
+        <h3>{{ produto.name }}</h3>
+        <p class="short-desc">{{ produto.short }}</p>
+        
+        <div class="price-row">
+          <span class="price">{{ produto.price | currency:'BRL' }}</span>
+        </div>
+      </div>
+
+      <div class="card-actions">
+        <button class="btn-edit" (click)="alert('Editar ID: ' + produto.id)">
+          Editar
+        </button>
+        
+        <button class="btn-delete" (click)="onDeletar(produto.id)">
+          Excluir
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

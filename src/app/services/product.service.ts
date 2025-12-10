@@ -16,16 +16,22 @@ export interface Product {
 })
 export class ProductService {
   private products: Product[] = [];
+  private loaded = false; // Flag para saber se já tentamos carregar
 
   constructor(private http: HttpClient) {}
 
+  /**
+   * Carrega os produtos do JSON.
+   * Deve ser chamado e aguardado (await) pelo componente antes de listar.
+   */
   async loadProducts(): Promise<Product[]> {
-    // se já carregados, retorna imediatamente
-    if (this.products.length) return this.products;
+    // Se já carregou (mesmo que esteja vazio), não busca de novo
+    if (this.loaded) return this.products;
 
     try {
       const data = await firstValueFrom(this.http.get<Product[]>('assets/data/products.json'));
       this.products = data || [];
+      this.loaded = true;
     } catch (e) {
       console.error('Erro ao carregar products.json', e);
       this.products = [];
@@ -33,31 +39,56 @@ export class ProductService {
     return this.products;
   }
 
+  /**
+   * Retorna a lista atual de produtos.
+   * Retorna uma cópia ([...]) para evitar mutação direta do array privado.
+   */
   listar(): Product[] {
-    return this.products;
+    return [...this.products];
   }
 
-  findById(id: number) {
+  findById(id: number): Product | undefined {
     return this.products.find(p => p.id === id);
   }
 
-  // métodos de CRUD (simulados em memória)
-  criar(prod: Product) {
-    prod.id = Date.now();
+  // --- Métodos de CRUD (Em Memória) ---
+
+  criar(prod: Product): Product {
+    // Lógica para gerar ID seguro: pega o maior ID atual e soma 1
+    // Se a lista estiver vazia, começa com 1
+    const maxId = this.products.length > 0 
+      ? Math.max(...this.products.map(p => p.id)) 
+      : 0;
+
+    prod.id = maxId + 1;
+    
     this.products.push(prod);
     return prod;
   }
 
-  atualizar(id: number, dados: Partial<Product>) {
-    const p = this.findById(id);
-    if (!p) return false;
-    Object.assign(p, dados);
+  atualizar(id: number, dados: Partial<Product>): boolean {
+    const index = this.products.findIndex(p => p.id === id);
+    if (index === -1) return false;
+
+    const produtoAtual = this.products[index];
+
+    // Removemos o 'id' dos dados recebidos para garantir que o ID nunca mude
+    const { id: _, ...dadosSemId } = dados as any;
+
+    // Atualiza o objeto mantendo a referência
+    this.products[index] = { ...produtoAtual, ...dadosSemId };
+
     return true;
   }
 
-  deletar(id: number) {
-    const before = this.products.length;
-    this.products = this.products.filter(x => x.id !== id);
-    return before !== this.products.length;
+  deletar(id: number): boolean {
+    const index = this.products.findIndex(x => x.id === id);
+    
+    if (index !== -1) {
+      this.products.splice(index, 1); // Remove o item do array original
+      return true;
+    }
+    
+    return false;
   }
 }

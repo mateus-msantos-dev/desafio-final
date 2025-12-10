@@ -1,54 +1,126 @@
+/* Container Principal */
 .container {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 10px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.topo {
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* Mensagens de Estado */
+.loading, .empty {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* --- O GRID MÁGICO --- */
+.product-grid {
+  display: grid;
+  /* Cria colunas que têm no mínimo 250px e ocupam o espaço restante (1fr) */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+/* --- Estilo do Card --- */
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  overflow: hidden; /* Garante que a imagem não saia das bordas arredondadas */
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column; /* Para empurrar os botões para o final */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Imagem */
+.card-image {
+  height: 200px;
+  position: relative;
+  background-color: #f0f0f0;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer */
+}
+
+.category-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+/* Conteúdo */
+.card-content {
+  padding: 15px;
+  flex-grow: 1; /* Ocupa o espaço disponível para alinhar botões no fundo */
+}
+
+.card-content h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.short-desc {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #27ae60;
+}
+
+/* Ações (Botões) */
+.card-actions {
+  padding: 15px;
+  background-color: #f9f9f9;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  gap: 10px;
 }
 
-.btn {
-  padding: 8px 14px;
-  background: #007bff;
-  color: white;
+button {
+  flex: 1;
+  padding: 8px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
 }
 
-.grid {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 20px;
+.btn-edit {
+  background-color: #e0e0e0;
+  color: #333;
 }
+.btn-edit:hover { background-color: #d0d0d0; }
 
-.card {
-  border: 1px solid #ddd;
-  padding: 15px;
-  border-radius: 10px;
-  text-align: center;
+.btn-delete {
+  background-color: #ffebee;
+  color: #c62828;
 }
-
-.card img {
-  width: 100%;
-  border-radius: 6px;
-  margin-bottom: 10px;
-}
-
-.botoes {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-.btn.edit {
-  background: #ffc107;
-}
-
-.btn.delete {
-  background: #dc3545;
-}
+.btn-delete:hover { background-color: #ffcdd2; }
