@@ -7,15 +7,36 @@
 
   <div *ngFor="let pedido of pedidosExpandidos" class="pedido-card">
     
-    <h3>
-      Pedido #{{ pedido.id }} 
-      <span class="data">{{ pedido.date | date:'dd/MM/yy HH:mm' }}</span>
-    </h3>
+    <div class="card-header">
+      <h3>
+        Pedido #{{ pedido.id }} 
+        <span class="data">{{ pedido.date | date:'dd/MM/yy HH:mm' }}</span>
+      </h3>
+
+      <div class="acoes">
+    
+        <ng-container *ngIf="pedido.status !== 'entregue'">
+          <button class="btn-check" (click)="confirmarEntrega(pedido.id)" title="Confirmar Entrega">
+            ✔
+          </button>
+          
+          <button class="btn-remover" (click)="removerPedido(pedido.id)" title="Cancelar Pedido">
+            ✕
+          </button>
+        </ng-container>
+
+        <div *ngIf="pedido.status === 'entregue'" class="selo-entregue">
+          ✅ Entregue
+        </div>
+
+      </div>
+    </div>
 
     <div class="dados-cliente">
       <p><strong>Cliente:</strong> {{ pedido.clienteNome }}</p>
       <p><strong>Telefone:</strong> {{ pedido.clienteTelefone }}</p>
       <p><strong>Email:</strong> {{ pedido.clienteEmail }}</p>
+      <p><strong>Data/Hora:</strong> {{ pedido.date | date:'dd/MM/yy HH:mm' }}</p>
     </div>
 
     <div class="itens">

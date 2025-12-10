@@ -14,6 +14,7 @@ export interface Order {
   items: OrderItem[]; 
   total: number;
   date: string; // Data da compra (ISOString)
+  status?: string;
 }
 
 @Injectable({
@@ -51,4 +52,23 @@ export class OrderService {
     return pedidos.reverse();
   }
 
+  /* Remove um pedido pelo ID e salva a lista atualizada */
+  removerPedido(id: number): void {
+    let pedidos = this.loadOrders();
+    // Filtra mantendo apenas os pedidos que NÃO são o que queremos excluir
+    pedidos = pedidos.filter(p => p.id !== id);
+    this.saveOrders(pedidos);
+  }
+
+  /* Atualiza o status do pedido (ex: de pendente para entregue) */
+  marcarComoEntregue(id: number): void {
+    const pedidos = this.loadOrders();
+    
+    // Encontra o pedido e muda o status
+    const index = pedidos.findIndex(p => p.id === id);
+    if (index !== -1) {
+      pedidos[index].status = 'entregue';
+      this.saveOrders(pedidos);
+    }
+  }
 }

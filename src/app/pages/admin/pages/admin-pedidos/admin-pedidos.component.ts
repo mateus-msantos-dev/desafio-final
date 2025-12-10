@@ -39,11 +39,33 @@ export class AdminPedidosComponent implements OnInit {
       return {
         ...pedido, // Copia dados do pedido (id, total, items, date)
         // Adiciona dados do cliente (ou texto padrão se não achar)
+        status: pedido.status || 'pendente',
         clienteNome: cliente ? cliente.nome : 'Cliente Desconhecido',
         clienteTelefone: cliente ? cliente.telefone : 'Não informado',
         clienteEmail: pedido.userEmail
       };
     });
+  }
+
+  removerPedido(id: number): void {
+    if (confirm('Tem certeza que deseja remover este pedido permanentemente?')) {
+      // 1. Remove do "banco de dados" (localStorage)
+      this.orderService.removerPedido(id);
+      
+      // 2. Remove da lista visual (pedidosExpandidos) para atualizar a tela na hora
+      this.pedidosExpandidos = this.pedidosExpandidos.filter(p => p.id !== id);
+    }
+  }
+
+  confirmarEntrega(id: number): void {
+    // 1. Atualiza no "banco" (localStorage)
+    this.orderService.marcarComoEntregue(id);
+
+    // 2. Atualiza na tela visualmente sem precisar recarregar
+    const pedido = this.pedidosExpandidos.find(p => p.id === id);
+    if (pedido) {
+      pedido.status = 'entregue';
+    }
   }
 }
 

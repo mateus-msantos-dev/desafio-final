@@ -65,3 +65,88 @@ h2 {
   color: #3a2b22;
 }
 
+/* Cria um flex container para separar o Titulo do Botão */
+.card-header {
+  display: flex;
+  justify-content: space-between; /* Título na esquerda, botão na direita */
+  align-items: flex-start;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 8px;
+}
+
+.pedido-card h3 {
+  margin: 0; /* Remove margem padrão para alinhar melhor */
+  color: #3a2b22;
+}
+
+/* Estilo do botão X */
+.btn-remover {
+  background-color: #ffe5e5;
+  color: #d32f2f;
+  border: 1px solid #ffcccc;
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;            /* Centraliza o X */
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-remover:hover {
+  background-color: #d32f2f;
+  color: white;
+  border-color: #b71c1c;
+}
+
+/* Container para os botões ficarem lado a lado */
+.acoes {
+  display: flex;
+  gap: 8px; /* Espaço entre os botões */
+  align-items: center;
+}
+
+/* Botão Verde (Check) */
+.btn-check {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-check:hover {
+  background-color: #2e7d32;
+  color: white;
+  border-color: #1b5e20;
+}
+
+/* Selo de Entregue */
+.selo-entregue {
+  background-color: #dcedc8;
+  color: #33691e;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  border: 1px solid #c5e1a5;
+}
+
+/* (Opcional) Deixar o card visualmente diferente se estiver entregue */
+/* Você pode aplicar essa classe condicionalmente no HTML se quiser */
+.pedido-entregue {
+  opacity: 0.7;
+  background-color: #fafafa;
+}
