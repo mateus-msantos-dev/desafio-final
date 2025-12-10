@@ -1,77 +1,159 @@
+/* Fundo total da página */
+.login-bg {
+  background-color: #f4eee8; /* Bege suave */
+  background-image: radial-gradient(#e8dcd0 1px, transparent 1px);
+  background-size: 20px 20px; /* Padrão de bolinhas sutil */
+  min-height: 100vh; /* Ocupa pelo menos a altura da tela */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container para centralizar e dar padding no mobile */
 .login-container {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 20px;
-    margin-top: 5%;
-  }
-  
-  .login-card {
-    background: #ffffff;
-    width: 100%;
-    max-width: 420px;
-    padding: 40px;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.15);
-    border-radius: 10px;
-    text-align: center;
-  }
-  
-  h2 {
-    margin-bottom: 10px;
-    color: #3a2b22;
-  }
-  
-  .subtitle {
-    margin-bottom: 30px;
-    color: #7a6d63;
-  }
-  
-  .input-group {
-    text-align: left;
-    margin-bottom: 20px;
-  }
-  
-  .input-group label {
-    display: block;
-    font-size: 0.9rem;
-    color: #3a2b22;
-    margin-bottom: 5px;
-  }
-  
-  .input-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #d6ccc2;
-    border-radius: 6px;
-    font-size: 1rem;
-  }
-  
-  button {
-    width: 100%;
-    padding: 12px;
-    background-color: #3a2b22;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-top: 10px;
-    transition: 0.2s;
-  }
-  
-  button:hover {
-    background-color: #2e221b;
-  }
-  
-  button:disabled {
-    background-color: #b8afa7;
-    cursor: not-allowed;
-  }
-  
-  .error {
-    color: #c0392b;
-    margin-top: 15px;
-    font-size: 0.9rem;
-  }
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* O Card Branco */
+.login-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 400px; /* Largura ideal para leitura */
+  padding: 40px 30px;
+  box-shadow: 0 10px 25px rgba(58, 43, 34, 0.1); /* Sombra suave marrom */
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid #fff;
+}
+
+/* Cabeçalho */
+.icon-header i {
+  font-size: 3rem;
+  color: #3a2b22;
+  margin-bottom: 15px;
+  background: #f4eee8;
+  padding: 15px;
+  border-radius: 50%;
+}
+
+h2 {
+  margin-bottom: 5px;
+  color: #3a2b22;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin-bottom: 30px;
+  color: #8d7a6e;
+  font-size: 0.95rem;
+}
+
+/* Inputs Bonitos */
+.input-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #5c4b41;
+  margin-bottom: 8px;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-wrapper i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 1rem;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 12px 12px 45px; /* Espaço para o ícone */
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #fafafa;
+  box-sizing: border-box; /* Importante para não estourar a largura */
+}
+
+.input-wrapper input:focus {
+  border-color: #3a2b22;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(58, 43, 34, 0.1); /* Glow marrom suave */
+  outline: none;
+}
+
+/* Botão */
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background-color: #3a2b22;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: 0.2s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #554034;
+  transform: translateY(-2px);
+}
+
+.btn-primary:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Erro */
+.error {
+  background-color: #fde8e8;
+  color: #c0392b;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Footer Links */
+.footer-links {
+  margin-top: 25px;
+  font-size: 0.9rem;
+  color: #666;
+  cursor: pointer;
+}
+
+.footer-links a {
+  color: #3a2b22;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
   

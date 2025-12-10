@@ -1,58 +1,61 @@
-<div class="cadastro-container">
-  <div class="cadastro-card">
+<div class="cadastro-bg">
+  <div class="cadastro-container">
+    <div class="cadastro-card">
 
-    <h2>Crie sua conta</h2>
-    <p class="subtitle">Preencha os dados abaixo</p>
+      <h2>Criar Conta</h2>
+      <p class="subtitle">Preencha os dados para começar</p>
 
-    <form #form="ngForm" (ngSubmit)="cadastrar()" class="cadastro-form">
+      <form #form="ngForm" (ngSubmit)="cadastrar()" class="cadastro-form">
 
-      <div class="input-group">
-        <label>Nome</label>
-        <input type="text" name="nome" required [(ngModel)]="nome">
-      </div>
-
-      <div class="input-group">
-        <label>Email</label>
-        <input type="email" name="email" required [(ngModel)]="email">
-      </div>
-
-      <div class="input-group">
-        <label>Telefone (WhatsApp)</label>
-        <input type="tel" name="telefone" required placeholder="(71) 99999-9999" [(ngModel)]="telefone">
-      </div>
-
-
-      <div class="input-group">
-        <label>Senha</label>
-        <input type="password" name="senha" required minlength="6" [(ngModel)]="senha">
-      </div>
-
-      <div class="input-group">
-        <label>Confirmar senha</label>
-        <input type="password" name="senha2" required [(ngModel)]="senha2">
-      </div>
-
-      <div class="lgpd-info lgpd-group">
-        <p>Os dados serão mantidos em nossa base de dados, só enquanto for desejado por você. A qualquer momento, será possível editar ou remover tais dados. <a target="_blank" routerLink="/termos-e-condicoes">Termos e Condições</a></p>
-      </div>
-        
-        <div class="lgpd-consentimento lgpd-group">
-          <input 
-            type="checkbox" 
-            id="consentimentoLGPD" 
-            name="consentimentoLGPD" 
-            required 
-            [(ngModel)]="consentimentoLGPD"
-          >
-          <label for="consentimentoLGPD">Sim, li e concordo com nossos termos.</label>
+        <div class="input-group">
+          <label>Nome Completo</label>
+          <input type="text" name="nome" required [(ngModel)]="nome" placeholder="Seu nome">
         </div>
 
-      <p class="error" *ngIf="erro">{{ erro }}</p>
+        <div class="input-group">
+          <label>Email</label>
+          <input type="email" name="email" required [(ngModel)]="email" placeholder="seu@email.com">
+        </div>
 
-      <button type="submit" [disabled]="form.invalid">Cadastrar</button>
-    </form>
+        <div class="input-group">
+          <label>WhatsApp</label>
+          <input type="tel" name="telefone" required placeholder="(XX) 9XXXX-XXXX" [(ngModel)]="telefone">
+        </div>
 
-    <a class="login-link" routerLink="/login">Já tenho conta</a>
+        <div class="row-password">
+          <div class="input-group">
+            <label>Senha</label>
+            <input type="password" name="senha" required minlength="3" [(ngModel)]="senha">
+          </div>
 
+          <div class="input-group">
+            <label>Confirmar</label>
+            <input type="password" name="senha2" required [(ngModel)]="senha2">
+          </div>
+        </div>
+
+        <div class="lgpd-section">
+          <div class="lgpd-info">
+            <p>Seus dados estão seguros conosco.
+              <a href="/lgpd" target="_blank">Leia nossos termos.</a>
+            </p>
+          </div>
+
+          <div class="lgpd-checkbox">
+            <input type="checkbox" id="consentimento" name="consentimentoLGPD" required [(ngModel)]="consentimentoLGPD">
+            <label for="consentimento">Li e concordo com os termos de uso.</label>
+          </div>
+        </div>
+
+        <p class="error" *ngIf="erro">{{ erro }}</p>
+
+        <button type="submit" [disabled]="form.invalid" class="btn-primary">Criar Conta</button>
+      </form>
+
+      <div class="footer-links">
+        <p>Já possui cadastro? <a routerLink="/lgpd" target="">Leia nossos termos.</a></p>
+      </div>
+
+    </div>
   </div>
 </div>

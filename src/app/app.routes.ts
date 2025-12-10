@@ -26,7 +26,7 @@ export const routes: Routes = [
 
   { path: 'carrinho', component: CartComponent},
 
-  { path: 'termos-e-condicoes', component: LgpdComponent },
+  { path: 'lgpd', component: LgpdComponent },
 
   {
   path: 'admin',
