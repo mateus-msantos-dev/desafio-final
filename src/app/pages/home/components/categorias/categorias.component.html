@@ -1,30 +1,32 @@
 <section class="categorias-section">
-    <h2>Categorias</h2>
-  
-    <div class="categorias-grid">
-      <div class="categoria-card">
-        <img src="/img/icons/bolo.png" alt="Bolos">
-        <span>Bolos</span>
-      </div>
-  
-      <div class="categoria-card">
-        <img src="/img/icons/doce.png" alt="Doces">
-        <span>Doces</span>
-      </div>
-  
-      <div class="categoria-card">
-        <img src="/img/icons/salgado.png" alt="Salgados">
-        <span>Salgados</span>
-      </div>
-  
-      <div class="categoria-card">
-        <img src="/img/icons/torta.png" alt="Tortas">
-        <span>Tortas</span>
-      </div>
-  
-      <div class="categoria-card">
-        <img src="/img/icons/kit-festa.png" alt="Kits para Festa">
-        <span>Kits para Festa</span>
-      </div>
-    </div>
-  </section>
+  <h2>Categorias</h2>
+
+  <div class="categorias-grid">
+    
+    <a [routerLink]="['/produtos']" fragment="bolos" class="categoria-card">
+      <img src="/img/icons/bolo.png" alt="Bolos">
+      <span>Bolos</span>
+    </a>
+
+    <a [routerLink]="['/produtos']" fragment="doces" class="categoria-card">
+      <img src="/img/icons/doce.png" alt="Doces">
+      <span>Doces</span>
+    </a>
+
+    <a [routerLink]="['/produtos']" fragment="salgados" class="categoria-card">
+      <img src="/img/icons/salgado.png" alt="Salgados">
+      <span>Salgados</span>
+    </a>
+
+    <a [routerLink]="['/produtos']" fragment="tortas" class="categoria-card">
+      <img src="/img/icons/torta.png" alt="Tortas">
+      <span>Tortas</span>
+    </a>
+
+    <a [routerLink]="['/produtos']" fragment="kit festa" class="categoria-card">
+      <img src="/img/icons/kit-festa.png" alt="Kits para Festa">
+      <span>Kits para Festa</span>
+    </a>
+
+  </div>
+</section>

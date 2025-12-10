@@ -1,55 +1,62 @@
 .categorias-section {
-    padding: 3rem 5%;
-    background-color: #fff7ec; /* tom creme suave #fff3e0*/
-  }
-  
+  padding: 3rem 5%;
+  background-color: #fff7ec;
+}
+
+.categorias-section h2 {
+  font-size: 1.9rem;
+  color: #3b2a24;
+  margin-bottom: 1.5rem;
+}
+
+/* Grid das categorias */
+.categorias-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1.2rem;
+}
+
+/* Card (Agora aplicado na tag <a>) */
+.categoria-card {
+  background-color: #fff3e0;
+  border-radius: 14px;
+  padding: 1.2rem 0.8rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transition: 0.2s ease;
+  border: 1px solid transparent;
+
+  /* ⬇️ NOVOS ESTILOS PARA RESETAR O LINK */
+  text-decoration: none; /* Remove sublinhado */
+  color: inherit;        /* Mantém a cor original do texto */
+  cursor: pointer;       /* Garante o cursor de clique */
+  /* ⬆️ FIM */
+}
+
+.categoria-card:hover {
+  background-color: #fcefdc;
+  border-color: #f2d3a2;
+  transform: translateY(-3px); /* Pequeno efeito extra de clique */
+}
+
+.categoria-card img {
+  width: 38px;
+  height: 38px;
+  margin-bottom: 10px;
+}
+
+.categoria-card span {
+  font-size: 1rem;
+  color: #4a3a32;
+  font-weight: 600;
+}
+
+/* Responsivo */
+@media (max-width: 500px) {
   .categorias-section h2 {
-    font-size: 1.9rem;
-    color: #3b2a24;
-    margin-bottom: 1.5rem;
-  }
-  
-  /* Grid das categorias */
-  .categorias-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 1.2rem;
-  }
-  
-  /* Card */
-  .categoria-card {
-    background-color: #fff3e0;
-    border-radius: 14px;
-    padding: 1.2rem 0.8rem;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  
-    transition: 0.2s ease;
-    border: 1px solid transparent;
   }
-  
-  .categoria-card:hover {
-    background-color: #fcefdc;
-    border-color: #f2d3a2;
-  }
-  
-  .categoria-card img {
-    width: 38px;
-    height: 38px;
-    margin-bottom: 10px;
-  }
-  
-  .categoria-card span {
-    font-size: 1rem;
-    color: #4a3a32;
-    font-weight: 600;
-  }
-  
-  /* Responsivo */
-  @media (max-width: 500px) {
-    .categorias-section h2 {
-      text-align: center;
-    }
-  }
+}

@@ -5,7 +5,11 @@
     <div *ngIf="carregando" class="loading">Carregando...</div>
 
     <ng-container *ngIf="!carregando">
-      <section class="category-section" *ngFor="let grupo of produtosPorCategoria">
+      <section 
+        class="category-section" 
+        *ngFor="let grupo of produtosPorCategoria" 
+        [id]="grupo.name.toLowerCase()"
+      >
         
         <h2 class="category-title">{{ grupo.name }}</h2> 
         
