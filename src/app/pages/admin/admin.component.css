@@ -1,0 +1,31 @@
+.admin-wrapper {
+  display: flex; /* Isso coloca Sidebar e Conteúdo lado a lado */
+  min-height: calc(100vh - 80px); /* Altura total da tela menos o Header */
+  background-color: #f8f5f2;
+}
+
+.sidebar-area {
+  flex: 0 0 260px; /* Largura fixa da sidebar */
+}
+
+.content-area {
+  flex: 1; /* O conteúdo ocupa todo o espaço que sobrar */
+  padding: 30px;
+  overflow-x: hidden;
+}
+
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Responsivo: No celular a sidebar vai para cima ou some (ajuste básico) */
+@media (max-width: 900px) {
+  .admin-wrapper {
+    flex-direction: column;
+  }
+  .sidebar-area {
+    width: 100%;
+    flex: none;
+  }
+}
