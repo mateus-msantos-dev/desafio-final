@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   menuAberto = false;
   cartItemCount: number = 0;
   isUserLoggedIn: boolean = false;
+  isAdmin: boolean = false; // ⬅️ 1. Nova variável
   
   private cartSubscription!: Subscription;
   private authSubscription!: Subscription;
@@ -27,17 +28,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // 1. Contador do Carrinho
+    // Contador do Carrinho
     this.cartSubscription = this.cartService.cartItemCount$.subscribe(
       (count) => {
         this.cartItemCount = count;
       }
     );
     
-    // 2. Estado de Login
+    // Estado de Login e Verificação de Admin
     this.authSubscription = this.authService.isLoggedIn$.subscribe(
       (isLoggedIn) => {
         this.isUserLoggedIn = isLoggedIn;
+
+        // ⬅️ 2. Verificamos se é admin toda vez que o status de login muda
+        const user = this.authService.getUsuarioLogado();
+        this.isAdmin = user?.role === 'admin';
       }
     );
   }
@@ -51,28 +56,25 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.menuAberto = !this.menuAberto;
   }
 
-  // --- LÓGICA NOVA DE REDIRECIONAMENTO ---
   navegarParaPerfil() {
     const usuario = this.authService.getUsuarioLogado();
 
     if (!usuario) {
-      // Se por algum motivo não tiver usuário, vai pro login
       this.router.navigate(['/login']);
       return;
     }
 
     if (usuario.role === 'admin') {
-      // Se for ADMIN -> Vai para o Dashboard
       this.router.navigate(['/admin']);
     } else {
-      // Se for CLIENTE -> Vai para o Perfil (ou Home, conforme sua preferência)
       this.router.navigate(['/meu-perfil']); 
     }
   }
   
   logout() {
     this.authService.logout();
-    this.router.navigate(['/']); // Volta para home
+    this.isAdmin = false; // Reseta variável ao sair
+    this.router.navigate(['/']); 
     if (this.menuAberto) {
       this.toggleMenu();
     }

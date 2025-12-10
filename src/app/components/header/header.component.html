@@ -32,8 +32,8 @@
         </ng-container>
       </div>
       
-      <button class="cart-btn">
-        <a href="/carrinho"><i class="fa-solid fa-cart-shopping"></i></a>
+      <button class="cart-btn" *ngIf="!isAdmin">
+        <a routerLink="/carrinho"><i class="fa-solid fa-cart-shopping"></i></a>
         <span class="cart-count">{{ cartItemCount }}</span>
       </button>
 
@@ -53,6 +53,8 @@
       <a routerLink="/produtos" (click)="toggleMenu()">Produtos</a>
       <a routerLink="/sobre" (click)="toggleMenu()">Sobre</a>
       <a routerLink="/contato" (click)="toggleMenu()">Contato</a>
+
+      <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 10px 0;">
 
       <a *ngIf="isUserLoggedIn" (click)="navegarParaPerfil(); toggleMenu()">Meu Perfil</a>
       <a *ngIf="isUserLoggedIn" (click)="logout()">Sair</a>
