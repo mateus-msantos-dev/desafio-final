@@ -1,18 +1,25 @@
 <header class="header">
   <div class="header-content">
 
-    <a class="logo" routerLink="/">Doces da Ju</a>
+    <a class="logo" routerLink="/">
+      <img src="/img/doces-da-ju2.png" alt="Doces da Ju">
+    </a>
     
     <nav class="nav-links">
-      <a routerLink="/">Home</a>
-      <a routerLink="/produtos">Produtos</a>
-      <a routerLink="/sobre">Sobre</a>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        Home
+      </a>
+      <a routerLink="/produtos" routerLinkActive="active">
+        Produtos
+      </a>
+      <a routerLink="/sobre" routerLinkActive="active">
+        Sobre
+      </a>
     </nav>
 
     <div class="header-right">
 
       <div class="auth-links">
-        
         <ng-container *ngIf="isUserLoggedIn">
           <a (click)="navegarParaPerfil()" class="auth-icon" title="Meu Perfil">
             <i class="fa-solid fa-user"></i>
@@ -49,10 +56,10 @@
     <button class="close-btn" (click)="toggleMenu()">×</button>
 
     <nav>
-      <a routerLink="/" (click)="toggleMenu()">Home</a>
-      <a routerLink="/produtos" (click)="toggleMenu()">Produtos</a>
-      <a routerLink="/sobre" (click)="toggleMenu()">Sobre</a>
-      <a routerLink="/contato" (click)="toggleMenu()">Contato</a>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="toggleMenu()">Home</a>
+      <a routerLink="/produtos" routerLinkActive="active" (click)="toggleMenu()">Produtos</a>
+      <a routerLink="/sobre" routerLinkActive="active" (click)="toggleMenu()">Sobre</a>
+      <a routerLink="/contato" routerLinkActive="active" (click)="toggleMenu()">Contato</a>
 
       <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 10px 0;">
 

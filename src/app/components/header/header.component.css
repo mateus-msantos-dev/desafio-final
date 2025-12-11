@@ -8,10 +8,12 @@ body {
   background-color: #3a2b22;
   color: #fff;
   box-sizing: border-box;
-  padding: 20px 5%;
+  /* MUDANÇA 1: Aumentei o padding vertical para caber a logo maior sem apertar */
+  padding: 15px 5%; 
   position: sticky;
   top: 0;
   z-index: 999;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .header-right {
@@ -29,44 +31,102 @@ body {
   margin: 0 auto;
 }
 
-/* Logo */
+/* MUDANÇA 2: ESTILO NOVO DA LOGO (IMAGEM MAIOR) */
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #fff;
+  display: flex;
+  align-items: center;
   text-decoration: none;
+  /* Adicionado para garantir que o link não fique menor que a imagem */
+  height: 80px; 
+}
+
+.logo img {
+  /* MUDANÇA PRINCIPAL: Aumentei de 60px para 80px (ou mais, se preferir) */
+  height: 100%; /* Ocupa os 80px do container pai */
+  width: auto;  /* Mantém a proporção */
+  
+  border-radius: 50%;
+  border: 3px solid #e8dcd0; /* Borda um pouco mais grossa */
+  padding: 2px;
+  background-color: white; /* Fundo branco essencial para sua logo sem fundo */
+  transition: transform 0.3s ease;
+  
+  /* Garante que a imagem não distorça */
+  object-fit: contain;
+}
+
+.logo:hover img {
+  transform: scale(1.05);
 }
 
 /* Navegação Desktop */
 .nav-links {
   display: flex;
   gap: 30px;
+  /* MUDANÇA: Aumentei um pouco a fonte para equilibrar com a logo maior */
+  font-size: 1.2rem; 
 }
 
 .nav-links a {
   color: #e8dcd0;
   text-decoration: none;
-  font-size: 1.1rem;
-  transition: color 0.2s;
+  transition: all 0.2s;
+  position: relative;
+  padding: 5px 0;
 }
 
 .nav-links a:hover {
   color: #fff;
 }
 
+/* 2. LINK ATIVO (Página Atual) */
+.nav-links a.active {
+  color: #ffb300; /* Amarelo/Dourado */
+  font-weight: 600;
+}
+
+/* Sublinhado animado para o active e hover */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ffb300;
+  transition: width 0.3s;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%; /* Preenche a largura quando ativo ou hover */
+}
+
+/* Botão Carrinho */
 .cart-btn {
   position: relative;
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 1.6rem;
   color: #fff;
   display: flex;
   align-items: center;
+  transition: transform 0.1s;
 }
 
-.fa-cart-shopping{
+.fa-cart-shopping {
   color: white;
+  transition: color 0.2s;
+}
+
+.cart-btn:hover .fa-cart-shopping {
+  color: #ffb300;
+}
+
+/* 3. ANIMAÇÃO DE CLIQUE NO CARRINHO */
+.cart-btn:active {
+  transform: scale(0.90); /* Encolhe levemente ao clicar */
 }
 
 .cart-count {
@@ -75,27 +135,44 @@ body {
   right: -10px;
   background-color: #ffb300;
   color: #3a2b22;
-  font-size: 12px;
+  font-size: 11px;
   padding: 2px 6px;
   border-radius: 50%;
   font-weight: bold;
+  border: 2px solid #3a2b22; /* Borda pequena para separar do ícone */
 }
 
-/* Ícones sociais desktop */
-.social-icons {
+/* Ícones Sociais / Auth */
+.auth-links {
   display: flex;
-  gap: 14px;
+  align-items: center;
+  gap: 15px;
 }
 
-.social-icons img {
-  width: 20px;
-  height: 20px;
-  opacity: 0.85;
-  transition: 0.2s;
+.auth-icon {
+  color: #fff;
+  font-size: 1.3rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s, color 0.2s;
 }
 
-.social-icons img:hover {
+.auth-icon:hover {
   opacity: 1;
+  color: #ffb300;
+}
+
+.auth-register {
+  font-size: 1.1rem;
+  padding: 6px 14px;
+  border: 1px solid #e8dcd0; 
+  border-radius: 20px; /* Borda mais arredondada */
+  transition: all 0.2s;
+}
+
+.auth-register:hover {
+  background-color: #e8dcd0;
+  color: #3a2b22;
 }
 
 /* Botão menu Mobile */
@@ -109,24 +186,24 @@ body {
 }
 
 /* --- MENU MOBILE --- */
-
 .mobile-menu {
   position: fixed;
   top: 0;
-  left: 0; /* sempre 0 */
+  left: 0;
   width: 260px;
   height: 100vh;
   background-color: #3a2b22;
   padding: 25px;
   display: flex;
   flex-direction: column;
-  transform: translateX(-100%); /* esconde sem causar scroll */
-  transition: transform 0.3s ease;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1); /* Animação mais suave */
   z-index: 1001;
+  box-shadow: 4px 0 15px rgba(0,0,0,0.3);
 }
 
 .mobile-menu.active {
-  transform: translateX(0); /* aparece */
+  transform: translateX(0);
 }
 
 .mobile-menu nav {
@@ -138,9 +215,18 @@ body {
 
 .mobile-menu nav a {
   color: #fff;
-  margin: 15px 0;
-  font-size: 1.2rem;
+  margin: 12px 0;
+  font-size: 1.1rem;
   text-decoration: none;
+  border-left: 3px solid transparent; /* Preparar para o active */
+  padding-left: 10px;
+}
+
+/* Active no Mobile */
+.mobile-menu nav a.active {
+  color: #ffb300;
+  border-left-color: #ffb300;
+  background: rgba(255,255,255,0.05); /* Leve fundo no item ativo */
 }
 
 .close-btn {
@@ -156,44 +242,17 @@ body {
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0,0,0,0.5);
   opacity: 0;
   pointer-events: none;
-  transition: 0.3s;
+  transition: opacity 0.3s;
   z-index: 1000;
+  backdrop-filter: blur(2px); /* Desfoque suave no fundo */
 }
 
 .overlay.active {
   opacity: 1;
   pointer-events: auto;
-}
-
-/* --- NOVOS ESTILOS PARA AUTENTICAÇÃO --- */
-
-.auth-links {
-  display: flex;
-  align-items: center;
-  gap: 15px; /* Espaço entre Perfil, Logout, Login */
-}
-
-.auth-icon {
-  color: #fff;
-  font-size: 1.1rem;
-  text-decoration: none;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.auth-icon:hover {
-  opacity: 0.8;
-}
-
-.auth-register {
-  /* Estilo visual para o botão "Cadastrar" */
-  font-size: 0.9rem;
-  padding: 5px 10px;
-  border: 1px solid #e8dcd0; 
-  border-radius: 4px;
 }
 
 /* --- RESPONSIVO --- */
@@ -206,9 +265,7 @@ body {
   .mobile-menu-btn {
     display: block;
   }
-}
-
-@media (max-width: 900px) {
+  
   .header-right {
     gap: 16px;
   }
@@ -216,10 +273,7 @@ body {
   .cart-btn {
     font-size: 20px;
   }
-}
 
-@media (max-width: 900px) {
-  /* Oculta os links de autenticação do desktop no mobile (serão mostrados no menu lateral) */
   .auth-links {
     display: none; 
   }
