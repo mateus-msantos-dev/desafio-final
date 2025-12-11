@@ -32,38 +32,26 @@ button {
   padding: 12px;
   border: none;
   border-radius: 8px;
-  background: #3a2b22;
   color: white;
   cursor: pointer;
   transition: 0.2s;
 }
 
-button:hover {
-  background: #2c1f19;
-}
-
 .btn-secundario {
-  background: #826a5c;
+  background: #b84242; 
+  /*#b84242*/
 }
 
 .btn-secundario:hover {
-  background: #6e584c;
-}
-
-.btn-perigo {
-  background: #b84242;
-}
-
-.btn-perigo:hover {
   background: #9d3333;
+  /*#9d3333*/
 }
 
 .pedidos-container {
   margin-top: 30px;
 }
 
-.pedidos-container h3 {
-  font-size: 1.4rem;
+.pedidos-container h3 {  font-size: 1.4rem; 
   margin-bottom: 15px;
 }
 
