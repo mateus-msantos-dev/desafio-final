@@ -1,24 +1,52 @@
 <footer class="footer">
-    <div class="footer-content">
-  
-      <!-- Logo -->
-      <div class="footer-logo">
-        <h2>Doces da Ju</h2>
+  <div class="footer-container">
+    
+    <div class="footer-col brand-col">
+      <img src="/img/doces-da-ju.png" alt="Doces da Ju" class="footer-logo">
+      <p class="brand-desc">
+        Transformando açúcar em afeto. Doces artesanais feitos com ingredientes selecionados e muito amor para os seus momentos especiais.
+      </p>
+      
+      <div class="social-links">
+        <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://whatsapp.com" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
       </div>
-  
-      <!-- Navegação -->
-      <nav class="footer-nav">
-        <a href="#">Home</a>
-        <a href="/produtos">Produtos</a>
-        <a href="/sobre">Sobre</a>
-      </nav>
-  
-      <!-- Redes sociais -->
-      <div class="footer-social">
-        <a href="#"><img src="img/instagram1.png" alt="Instagram"></a>
-        <a href="#"><img src="img/facebook1.png" alt="Facebook"></a>
-        <a href="#"><img src="img/whatsapp2.png" alt="Whastapp"></a>
-      </div>
-  
     </div>
-  </footer>
+
+    <div class="footer-col links-col">
+      <h3>Navegação</h3>
+      <ul>
+        <li><a routerLink="/">Início</a></li>
+        <li><a routerLink="/produtos">Nossos Produtos</a></li>
+        <li><a routerLink="/sobre">Sobre a Ju</a></li>
+        <li><a routerLink="/lgpd" target="_blank">Termos e Privacidade</a></li>
+        <li><a routerLink="/login">Login</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col contact-col">
+      <h3>Fale Conosco</h3>
+      <ul class="contact-list">
+        <li>
+          <i class="fa-solid fa-phone"></i>
+          <span>(71) 99999-9999</span>
+        </li>
+        <li>
+          <i class="fa-solid fa-envelope"></i>
+          <span>contatodocesdaju&#64;gmail.com</span>
+        </li>
+        <li>
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Rua dos Sonhos, 123 - Salvador, BA</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; {{ currentYear }} Doces da Ju. Todos os direitos reservados.</p>
+    <p class="dev-credits">Feito com 🧡 por Mateus</p>
+  </div>
+</footer>

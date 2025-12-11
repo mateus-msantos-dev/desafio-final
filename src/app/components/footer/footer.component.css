@@ -1,65 +1,186 @@
 .footer {
-    background-color: #3a2b22;
-    color: white;
-    padding: 30px 5%;
+  background-color: #3a2b22;
+  color: #e8dcd0;
+  padding-top: 60px;
+  font-family: 'Segoe UI', sans-serif;
+  margin-top: auto; /* Empurra o footer para baixo se a página for curta */
+}
+
+/* Grid Principal */
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5% 50px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr; /* Coluna da logo é maior */
+  gap: 40px;
+}
+
+/* Coluna 1: Marca */
+.footer-logo {
+  width: 120px; /* Ajuste conforme necessário */
+  margin-bottom: 20px;
+  border-radius: 50%; /* Se a logo for redonda, fica perfeito */
+  border: 3px solid #e8dcd0;
+  background: white; /* Garante fundo branco se a logo for transparente */
+  padding: 5px;
+}
+
+.brand-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  max-width: 300px;
+}
+
+/* Redes Sociais */
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255,255,255,0.1);
+  color: #fff;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 1.2rem;
+}
+
+.social-links a:hover {
+  background-color: #ffb300;
+  color: #3a2b22;
+  transform: translateY(-3px);
+}
+
+/* Títulos das Colunas */
+h3 {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+/* Detalhe embaixo do título */
+h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 30px;
+  height: 2px;
+  background-color: #ffb300;
+}
+
+/* Listas de Links e Contato */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 12px;
+}
+
+/* Links de Navegação */
+.links-col a {
+  color: #e8dcd0;
+  text-decoration: none;
+  transition: 0.2s;
+  font-size: 0.95rem;
+}
+
+.links-col a:hover {
+  color: #ffb300;
+  padding-left: 5px; /* Efeito de movimento */
+}
+
+/* Lista de Contato com Ícones */
+.contact-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+}
+
+.contact-list i {
+  color: #ffb300;
+  margin-top: 4px;
+}
+
+/* Barra Inferior */
+.footer-bottom {
+  background-color: #2c211a; /* Um tom mais escuro */
+  padding: 20px 5%;
+  text-align: center;
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dev-credits {
+  opacity: 0.7;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr; /* 2 colunas no tablet */
   }
   
-  .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+  .brand-col {
+    grid-column: span 2; /* Logo ocupa a largura total */
+    text-align: center;
   }
-  
-  /* Logo */
-  .footer-logo h2 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #fff;
+
+  .brand-desc {
+    margin: 0 auto 20px; /* Centraliza texto */
   }
-  
-  /* Navegação */
-  .footer-nav {
-    display: flex;
+
+  .social-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-container {
+    grid-template-columns: 1fr; /* 1 coluna no celular */
+    text-align: center;
     gap: 30px;
   }
-  
-  .footer-nav a {
-    color: #e7dacf;
-    text-decoration: none;
-    font-size: 0.95rem;
+
+  .brand-col {
+    grid-column: span 1;
   }
-  
-  .footer-nav a:hover {
-    color: #ffffff;
+
+  h3::after {
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza o sublinhado */
   }
-  
-  /* Redes sociais */
-  .footer-social {
-    display: flex;
-    gap: 14px;
+
+  .links-col a:hover {
+    padding-left: 0; /* Remove efeito lateral no mobile */
   }
-  
-  .footer-social img {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    opacity: 0.9;
-    transition: opacity .2s;
-    color: #e7dacf;
+
+  .contact-list li {
+    justify-content: center; /* Centraliza contato */
   }
-  
-  .footer-social img:hover {
-    opacity: 1;
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
   }
-  
-  /* Responsivo */
-  @media (max-width: 768px) {
-    .footer-content {
-      flex-direction: column;
-      gap: 20px;
-      text-align: center;
-    }
-  }
+}
   

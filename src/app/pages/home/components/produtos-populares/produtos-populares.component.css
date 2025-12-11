@@ -73,9 +73,9 @@
 .produto-card {
   /* ⚠️ Lógica vital para o carrossel: 4 itens */
   flex-shrink: 0;
-  width: calc(25% - 16.5px); 
+  width: calc(25% - 16.5px);
   min-width: calc(25% - 16.5px);
-  
+
   /* Estilo Visual Idêntico */
   background: #fff;
   border-radius: 12px;
@@ -88,7 +88,7 @@
 
 .produto-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+  /* box-shadow: 0 12px 24px rgba(0,0,0,0.12); */
 }
 
 .thumb {
@@ -180,7 +180,7 @@
 @media (max-width: 1200px) {
   /* 3 cards */
   .produto-card {
-    width: calc(33.333% - 14.66px); 
+    width: calc(33.333% - 14.66px);
     min-width: calc(33.333% - 14.66px);
   }
 }
@@ -194,7 +194,7 @@
     margin: 0 auto;
   }
   .carousel-view { overflow: visible; padding: 0; }
-  
+
   .carousel-track {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -216,7 +216,7 @@
     grid-template-columns: 1fr;
     gap: 25px;
   }
-  
+
   .produto-card {
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   }
