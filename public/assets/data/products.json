@@ -3,7 +3,7 @@
       "id": 1,
       "name": "Brigadeiros",
       "short": "Brigadeiro Granulado - Unidade",
-      "price": 1,
+      "price": 1.50,
       "image": "/img/brigadeiro.jpeg",
       "category": "doces"
     },
@@ -35,7 +35,7 @@
       "id": 5,
       "name": "Coxinha",
       "short": "Coxinha de Frango - Unidade",
-      "price": 1,
+      "price": 1.50,
       "image": "/img/coxinha.webp",
       "category": "salgados"
     },
@@ -43,7 +43,7 @@
       "id": 6,
       "name": "Kibe",
       "short": "Kibe - Unidade",
-      "price": 1,
+      "price": 1.50,
       "image": "/img/kibe.avif",
       "category": "salgados"
     },
@@ -51,7 +51,7 @@
       "id": 7,
       "name": "Pastel",
       "short": "Pastel de Carne - Unidade",
-      "price": 1,
+      "price": 1.50,
       "image": "/img/pastel.webp",
       "category": "salgados"
     },
@@ -91,7 +91,7 @@
       "id": 12,
       "name": "Beijinho",
       "short": "Beijinho - Unidade",
-      "price": 1,
+      "price": 1.50,
       "image": "/img/beijinho.jpg",
       "category": "doces"
     },
@@ -99,7 +99,7 @@
       "id": 13,
       "name": "Bem Casado",
       "short": "Bem Casado - Unidade",
-      "price": 1.50,
+      "price": 2,
       "image": "/img/bem-casado.avif",
       "category": "doces"
     },
@@ -126,5 +126,29 @@
       "price": 35,
       "image": "/img/torta-de-chocolate.webp",
       "category": "tortas"
+    },
+    {
+      "id": 17,
+      "name": "Kit Festa 1", 
+      "short": "Bolo de Chocolate, 40 Coxinhas e 20 Brigadeiros",
+      "price": 100,
+      "image": "/img/kit-festa1.webp",
+      "category": "kit-festa"
+    },
+    {
+      "id": 18,
+      "name": "Kit Festa 2", 
+      "short": "Bolo de Chocolate, 10 Coxinhas e 10 Brigadeiros",
+      "price": 40,
+      "image": "/img/kit-festa2.jpg",
+      "category": "kit-festa"
+    },
+    {
+      "id": 19,
+      "name": "Kit Festa 3", 
+      "short": "Torta de Chocolate, 50 Coxinhas, 50 Pasteis, 30 Brigadeiros e 10 Beijinhos",
+      "price": 170,
+      "image": "/img/kit-festa3.jpg",
+      "category": "kit-festa"
     }
 ]

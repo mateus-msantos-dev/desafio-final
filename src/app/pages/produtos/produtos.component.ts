@@ -22,7 +22,7 @@ export class ProdutosComponent implements OnInit {
   produtosPorCategoria: CategoryGroup[] = [];
   carregando = true;
 
-  readonly categoriasPadrao = ['bolos', 'doces', 'tortas', 'salgados']; 
+  readonly categoriasPadrao = ['bolos', 'doces', 'tortas', 'salgados', 'kit-festa']; 
 
   // ➡️ Injetar o CartService no construtor
   constructor(
