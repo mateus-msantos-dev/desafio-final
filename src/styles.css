@@ -1,6 +1,26 @@
-body {
-    margin: 0; 
-    padding: 0;
-    background-color: #f6f4f1;
-    box-sizing: border-box;
+html, body {
+  /* Removemos qualquer trava de altura ou overflow */
+  height: 100%; 
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  
+  /* IMPORTANTE: */
+  /* overflow-x: hidden impede rolagem lateral indesejada na janela inteira */
+  overflow-x: hidden; 
+  /* overflow-y: auto deixa o navegador criar a barra de rolagem vertical natural */
+  overflow-y: auto; 
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Garante que links não tenham decoração padrão feia */
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
 }
