@@ -147,3 +147,41 @@ button {
   color: #c62828;
 }
 .btn-delete:hover { background-color: #ffcdd2; }
+
+/* Garante que o container da tabela permita rolagem lateral */
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto; /* ATIVA O SCROLL HORIZONTAL */
+  -webkit-overflow-scrolling: touch; /* Scroll suave no iPhone */
+}
+
+/* Opcional: Ajustes para celular */
+@media (max-width: 600px) {
+  .lista-container {
+    padding: 10px; /* Menos padding */
+    margin: 10px auto;
+  }
+
+  .header-lista {
+    flex-direction: column; /* Título em cima, botão embaixo */
+    gap: 15px;
+    align-items: flex-start;
+  }
+  
+  .btn-novo {
+    width: 100%; /* Botão largura total no celular */
+    justify-content: center;
+  }
+
+  /* Reduzir tamanho da imagem na tabela para economizar espaço */
+  .thumb-img {
+    width: 35px;
+    height: 35px;
+  }
+  
+  th, td {
+    padding: 8px; /* Menos espaçamento nas células */
+    font-size: 0.85rem; /* Fonte menor */
+  }
+}

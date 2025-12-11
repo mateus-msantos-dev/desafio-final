@@ -37,7 +37,7 @@ export class LoginComponent {
         this.router.navigate(['/admin']); 
       } else {
         // Redireciona usuários normais para o Checkout para completar a compra
-        this.router.navigate(['/checkout']); 
+        this.router.navigate(['/meu-perfil']); 
       }
       
     } else {

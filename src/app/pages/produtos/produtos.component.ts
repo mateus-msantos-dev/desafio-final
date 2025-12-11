@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ProductService, Product } from '../../services/product.service';
 import { RouterModule } from '@angular/router';
 import { CartService } from '../../services/cart.service'; 
+// 1. Importe o AuthService
+import { AuthService } from '../../services/auth.service';
 
 export interface CategoryGroup {
   name: string;
@@ -19,15 +21,19 @@ export interface CategoryGroup {
 export class ProdutosComponent implements OnInit {
   produtosPorCategoria: CategoryGroup[] = [];
   carregando = true;
-
-  // 🔴 REMOVIDO: categoriasPadrao (agora vem do service)
+  isAdmin = false; // 2. Nova variável de controle
 
   constructor(
     private productService: ProductService,
-    private cartService: CartService 
+    private cartService: CartService,
+    private authService: AuthService // 3. Injete o serviço
   ) {}
 
   async ngOnInit(): Promise<void> {
+    // 4. Verifique se é admin logo ao iniciar
+    const user = this.authService.getUsuarioLogado();
+    this.isAdmin = user?.role === 'admin';
+
     await this.productService.loadProducts();
     const todosProdutos = this.productService.listar();
     
@@ -35,35 +41,24 @@ export class ProdutosComponent implements OnInit {
     this.carregando = false;
   }
 
+  // ... agruparProdutos, formatCategoryName, formatPrice (MANTENHA IGUAL) ...
   agruparProdutos(produtos: Product[]): void {
     const grupos: { [key: string]: Product[] } = {};
-    
-    // 1. Agrupa os produtos por chave em minúsculo
     produtos.forEach(prod => {
       const categoryKey = (prod.category || 'outros').toLowerCase(); 
-      
-      if (!grupos[categoryKey]) {
-        grupos[categoryKey] = [];
-      }
+      if (!grupos[categoryKey]) grupos[categoryKey] = [];
       grupos[categoryKey].push(prod);
     });
 
-    // 2. Usa a lista oficial do Service para criar a ordem de exibição
     this.produtosPorCategoria = this.productService.VALID_CATEGORIES
       .map(catName => {
-        // catName vem como "Kit Festa", precisamos buscar "kit festa" no grupo
         const lookupKey = catName.toLowerCase();
-        
         const products = grupos[lookupKey] || [];
-        
-        // Usamos o nome bonito do Service para o título
         return { name: catName, products: products };
       })
       .filter(group => group.products.length > 0);
   }
-  
-  // (Opcional) formatCategoryName não é mais tão necessário pois usamos o nome do service, 
-  // mas pode manter se quiser garantir formatação extra.
+
   formatCategoryName(key: string): string {
     if (!key) return 'Outros';
     return key.charAt(0).toUpperCase() + key.slice(1);
@@ -74,6 +69,12 @@ export class ProdutosComponent implements OnInit {
   }
 
   addToCart(prod: Product) {
+    // 5. Bloqueio de segurança extra (opcional, mas recomendado)
+    if (this.isAdmin) {
+      alert('Administradores não podem fazer compras.');
+      return;
+    }
+    
     this.cartService.addToCart(prod.id); 
     alert(`${prod.name} adicionado ao carrinho`);
   }

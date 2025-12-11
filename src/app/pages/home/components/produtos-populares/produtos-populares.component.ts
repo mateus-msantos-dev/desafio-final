@@ -2,8 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ProductService, Product } from '../../../../services/product.service'; 
-// 1. Importar o CartService
 import { CartService } from '../../../../services/cart.service';
+// 1. Importe o AuthService
+import { AuthService } from '../../../../services/auth.service';
 import { interval, Subscription } from 'rxjs'; 
 
 @Component({
@@ -19,60 +20,47 @@ export class ProdutosPopularesComponent implements OnInit, OnDestroy {
   carregando = true;
   currentOffset: number = 0; 
   readonly itemsPerView: number = 4;
+  isAdmin = false; // 2. Variável
   private autoplaySubscription!: Subscription; 
 
   constructor(
     private productService: ProductService,
-    private cartService: CartService // 2. Injetar o CartService
+    private cartService: CartService,
+    private authService: AuthService // 3. Injeção
   ) {}
   
   async ngOnInit(): Promise<void> {
+    // 4. Checagem
+    const user = this.authService.getUsuarioLogado();
+    this.isAdmin = user?.role === 'admin';
+
     await this.productService.loadProducts();
-    // Pega os 8 primeiros para o carrossel
     this.produtos = this.productService.listar().slice(0, 8); 
     this.carregando = false;
     this.startAutoplay();
   }
   
+  // ... ngOnDestroy, nextCard, prevCard, startAutoplay, resetAutoplay, get transformStyle, formatPrice (MANTENHA IGUAL) ...
   ngOnDestroy(): void {
-    if (this.autoplaySubscription) {
-      this.autoplaySubscription.unsubscribe();
-    }
+    if (this.autoplaySubscription) this.autoplaySubscription.unsubscribe();
   }
-
-  // --- LÓGICA DO CARRINHO (Copiada de produtos.component.ts) ---
-  addToCart(prod: Product) {
-    this.cartService.addToCart(prod.id);
-    // Você pode usar um Toast/Snackbar aqui se preferir ao invés de alert
-    alert(`${prod.name} adicionado ao carrinho`);
-  }
-
-  // --- LÓGICA DE NAVEGAÇÃO E CARROSSEL ---
 
   nextCard(): void {
     const maxOffset = this.produtos.length - this.itemsPerView;
-    if (this.currentOffset < maxOffset) {
-      this.currentOffset++;
-    } else {
-      this.currentOffset = 0; 
-    }
+    if (this.currentOffset < maxOffset) this.currentOffset++;
+    else this.currentOffset = 0; 
     this.resetAutoplay(); 
   }
 
   prevCard(): void {
     const maxOffset = this.produtos.length - this.itemsPerView;
-    if (this.currentOffset > 0) {
-      this.currentOffset--;
-    } else {
-      this.currentOffset = maxOffset; 
-    }
+    if (this.currentOffset > 0) this.currentOffset--;
+    else this.currentOffset = maxOffset; 
     this.resetAutoplay(); 
   }
   
   startAutoplay(): void {
-    this.autoplaySubscription = interval(5000).subscribe(() => {
-      this.nextCard();
-    });
+    this.autoplaySubscription = interval(5000).subscribe(() => this.nextCard());
   }
   
   resetAutoplay(): void {
@@ -87,5 +75,12 @@ export class ProdutosPopularesComponent implements OnInit, OnDestroy {
   
   formatPrice(v: number) {
     return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
+  addToCart(prod: Product) {
+    if (this.isAdmin) return; // Bloqueio lógico
+    
+    this.cartService.addToCart(prod.id);
+    alert(`${prod.name} adicionado ao carrinho`);
   }
 }

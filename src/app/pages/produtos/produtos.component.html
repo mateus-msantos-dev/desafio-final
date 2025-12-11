@@ -26,8 +26,13 @@
               <p class="short">{{ produto.short }}</p>
     
               <div class="card-footer">
-                <div class="price">{{ formatPrice(produto.price) }}</div>
-                <button class="btn-add" (click)="addToCart(produto)">Adicionar ao carrinho</button>
+                <div class="price">
+                  {{ formatPrice(produto.price) }}
+                </div>
+                            
+                <button class="btn-add" *ngIf="!isAdmin" (click)="addToCart(produto)">
+                  Adicionar ao carrinho
+                </button>
               </div>
             </div>
           </article>

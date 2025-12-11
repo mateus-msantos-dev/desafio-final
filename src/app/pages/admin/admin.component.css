@@ -29,13 +29,38 @@
      Se for grande (Listar Produtos), gera scroll só nessa área. */
 }
 
-/* Responsivo: No celular a sidebar vai para cima ou some (ajuste básico) */
-@media (max-width: 900px) {
+/* RESPONSIVIDADE PARA CELULAR */
+@media (max-width: 768px) {
   .admin-wrapper {
-    flex-direction: column;
+    position: relative; /* Necessário para a sidebar absoluta funcionar */
   }
+
   .sidebar-area {
-    width: 100%;
-    flex: none;
+    position: absolute; /* Faz a sidebar flutuar sobre o conteúdo */
+    z-index: 1000; /* Garante que fique na frente de tudo */
+    height: 100%;
+    /* Se estiver colapsada, ocupa menos espaço, se aberta ocupa o normal */
+    /* A lógica de largura já está no componente da sidebar, aqui só mudamos o comportamento */
   }
+
+  .content-area {
+    width: 100%; /* O conteúdo ocupa a tela toda */
+    padding: 15px; /* Reduz padding para ganhar espaço */
+    margin-left: 70px; /* Deixa um espacinho para a barra colapsada (se quiser) */
+  }
+  
+  /* Se você quiser que a sidebar cubra tudo quando aberta: */
+  .sidebar-area:not(.collapsed) {
+    box-shadow: 5px 0 15px rgba(0,0,0,0.5); /* Sombra para destacar */
+  }
+}
+
+/* Ajuste fino para quando a sidebar estiver colapsada no mobile */
+@media (max-width: 768px) {
+    /* Quando fechada, a sidebar ocupa 70px (definido no componente dela).
+       O conteúdo pode começar logo depois. */
+    .content-area {
+        margin-left: 0; 
+        padding-left: 80px; /* Compensa a sidebar fechada sobreposta */
+    }
 }

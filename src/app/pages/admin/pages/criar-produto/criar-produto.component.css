@@ -90,3 +90,21 @@ button {
   background-color: #95a5a6;
   cursor: not-allowed;
 }
+
+@media (max-width: 600px) {
+  .container-form {
+    width: 100%; /* Ocupa tudo */
+    margin: 10px 0;
+    padding: 20px 15px; /* Menos padding lateral */
+    box-sizing: border-box; /* Importante para não estourar a tela */
+  }
+
+  .actions {
+    flex-direction: column-reverse; /* Botões um em cima do outro */
+    gap: 10px;
+  }
+
+  .actions button {
+    width: 100%; /* Botões ocupam largura total */
+  }
+}
