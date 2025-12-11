@@ -2,8 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
-// Importe a interface Product também
-import { ProductService, Product } from '../../../../services/product.service'; // Ajuste o caminho conforme necessário
+import { ProductService, Product } from '../../../../services/product.service';
 
 @Component({
   selector: 'app-criar-produto',
@@ -18,10 +17,9 @@ export class CriarProdutoComponent implements OnInit {
   router = inject(Router);
   route = inject(ActivatedRoute);
 
-  // Lista fixa de categorias
-  categorias = ['Bolos', 'Tortas', 'Salgados', 'Doces', 'Kit Festa'];
+  // 🔴 ATUALIZADO: Agora pega do Service
+  categorias = this.productService.VALID_CATEGORIES;
 
-  // Definição do Formulário
   produtoForm: FormGroup = this.fb.group({
     nome: ['', Validators.required],
     descricao: ['', Validators.required],
@@ -31,13 +29,11 @@ export class CriarProdutoComponent implements OnInit {
   });
 
   isEditMode = false;
-  produtoId: number | null = null; // Variável para armazenar o ID na edição
+  produtoId: number | null = null; 
 
   async ngOnInit() {
-    // 1. Garante que os produtos estejam carregados do JSON/API
     await this.productService.loadProducts();
 
-    // 2. Verifica se existe um ID na URL (ex: /admin/produtos/editar/5)
     const idParam = this.route.snapshot.paramMap.get('id');
     
     if (idParam) {
@@ -52,13 +48,12 @@ export class CriarProdutoComponent implements OnInit {
     if (produto) {
       this.isEditMode = true;
       
-      // Mapeamento: Interface Product (Inglês) -> Formulário (Português)
       this.produtoForm.patchValue({
         nome: produto.name,
-        descricao: produto.short, // Assumindo que 'short' é a descrição
+        descricao: produto.short,
         preco: produto.price,
         imagem: produto.image,
-        categoria: produto.category || '' // Garante que não venha undefined
+        categoria: produto.category || ''
       });
     } else {
       alert('Produto não encontrado!');
@@ -68,13 +63,12 @@ export class CriarProdutoComponent implements OnInit {
 
   onSubmit() {
     if (this.produtoForm.invalid) {
-      this.produtoForm.markAllAsTouched(); // Mostra todos os erros se tentar salvar vazio
+      this.produtoForm.markAllAsTouched();
       return;
     }
 
     const dadosForm = this.produtoForm.value;
 
-    // Prepara o objeto no formato que o Service espera (Interface Product)
     const produtoParaSalvar: Partial<Product> = {
       name: dadosForm.nome,
       short: dadosForm.descricao,
@@ -85,7 +79,6 @@ export class CriarProdutoComponent implements OnInit {
 
     if (this.isEditMode && this.produtoId) {
       // --- ATUALIZAR ---
-      // Passamos o ID e os dados (exceto o ID, que o service protege)
       const sucesso = this.productService.atualizar(this.produtoId, produtoParaSalvar);
       
       if (sucesso) {
@@ -97,7 +90,6 @@ export class CriarProdutoComponent implements OnInit {
 
     } else {
       // --- CRIAR ---
-      // Precisamos converter para o tipo Product completo (o ID o service gera)
       const novoProduto = produtoParaSalvar as Product;
       
       this.productService.criar(novoProduto);
@@ -107,8 +99,6 @@ export class CriarProdutoComponent implements OnInit {
   }
 
   onCancelar() {
-    // Se for edição volta pro dashboard ou lista, se for criação também.
-    // Ajuste a rota conforme sua preferência.
     this.router.navigate(['/admin']); 
   }
 }

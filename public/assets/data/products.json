@@ -133,7 +133,7 @@
       "short": "Bolo de Chocolate, 40 Coxinhas e 20 Brigadeiros",
       "price": 100,
       "image": "/img/kit-festa1.webp",
-      "category": "kit-festa"
+      "category": "kit festa"
     },
     {
       "id": 18,
@@ -141,7 +141,7 @@
       "short": "Bolo de Chocolate, 10 Coxinhas e 10 Brigadeiros",
       "price": 40,
       "image": "/img/kit-festa2.jpg",
-      "category": "kit-festa"
+      "category": "kit festa"
     },
     {
       "id": 19,
@@ -149,6 +149,6 @@
       "short": "Torta de Chocolate, 50 Coxinhas, 50 Pasteis, 30 Brigadeiros e 10 Beijinhos",
       "price": 170,
       "image": "/img/kit-festa3.jpg",
-      "category": "kit-festa"
+      "category": "kit festa"
     }
 ]

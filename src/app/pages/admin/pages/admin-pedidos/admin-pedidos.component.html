@@ -10,7 +10,7 @@
     <div class="card-header">
       <h3>
         Pedido #{{ pedido.id }} 
-        <span class="data">{{ pedido.date | date:'dd/MM/yy HH:mm' }}</span>
+        
       </h3>
 
       <div class="acoes">
@@ -36,7 +36,7 @@
       <p><strong>Cliente:</strong> {{ pedido.clienteNome }}</p>
       <p><strong>Telefone:</strong> {{ pedido.clienteTelefone }}</p>
       <p><strong>Email:</strong> {{ pedido.clienteEmail }}</p>
-      <p><strong>Data/Hora:</strong> {{ pedido.date | date:'dd/MM/yy HH:mm' }}</p>
+      <p><strong>Data/Hora:</strong> {{ pedido.date | date:'dd/MM/yy | HH:mm' }}</p>
     </div>
 
     <div class="itens">
